@@ -1,7 +1,3 @@
-# With some tests and a re-shuffling (you would NOT define all API
-# functions as methods), this could be very easily be packaged as a
-# standalone gem. Some would call it "GoSquared Ruby SDK", I would call
-# it "GoSquared API Ruby client"
 require 'json'
 require 'faraday'
 require 'uri'
