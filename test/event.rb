@@ -4,7 +4,7 @@ require 'gosquared'
 
 describe GoSquared do
   before do
-    @gosquared = GoSquared::Event.new(:site_token => "GSN-106863-S")
+    @gosquared = GoSquared::Event.new({:site_token => "GSN-106863-S"})
   end
 
   describe "storing events" do

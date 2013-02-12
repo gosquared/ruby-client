@@ -4,7 +4,7 @@ require 'gosquared'
 
 describe GoSquared do
   before do
-    @gosquared = GoSquared::API.new(:site_token => "GSN-106863-S", :api_key => "demo")
+    @gosquared = GoSquared::API.new({:site_token => "GSN-106863-S", :api_key => "demo"})
   end
 
   describe "getting functions" do
