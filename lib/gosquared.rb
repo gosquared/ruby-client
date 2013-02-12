@@ -17,10 +17,8 @@ module GoSquared
     end
 
     GoSquared::API_FUNCTIONS.each do | func_name |
-      class_eval %{
-        def #{func_name}(func_params={})
-          get("/#{func_name}")
-        end
+      define_method(func_name) { | func_params={} |
+        get("/#{func_name}", func_params)
       }
     end
   end
