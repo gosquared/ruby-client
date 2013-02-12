@@ -1,11 +1,11 @@
 ruby '1.9.3'
 source 'https://rubygems.org'
 
-gem 'faraday'
-gem 'json'
+gem 'faraday', '~> 0.8.5'
+gem 'json', '~> 1.7.6'
 
 group :development do
-  gem 'rake'
+  gem 'rake', '~> 0.9.2'
 end
 
 group :test do

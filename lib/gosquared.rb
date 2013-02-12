@@ -1,36 +1,49 @@
-require 'json'
-require 'faraday'
-require 'uri'
-require 'pry'
-require_relative './client'
-require_relative '../config/default'
-
+require './lib/client'
 module GoSquared
   class API < Client
-    @url = GoSquared::API_ENDPOINT
-    API_VERSION = "latest"
-    API_KEY = ENV.fetch('GOSQUARED_API_KEY') { "demo" }
+    API_VERSION = ENV.fetch('GOSQUARED_API_VERSION') { "latest" }
 
-    Error = Class.new(StandardError)
+    def initialize(opts={})
+      super
+      debug 2, GoSquared::DEBUG_LEVELS[:WARNING] if @opts[:api_key].nil?
+      debug 3, GoSquared::DEBUG_LEVELS[:NOTICE], {:api_version => API_VERSION} if @opts[:api_version].nil?
 
-    def initialize(params={})
-      @params = {
-        :api_version => API_VERSION,
-        :api_key     => API_KEY
-      }.merge(params)
-      @url = GoSquared::API_ENDPOINT + '/' + @params[:api_version]
+      @req_opts[:api_key] = @opts[:api_key]
+      @opts[:api_version] ||= API_VERSION
     end
 
-    def concurrents(params={})
-      get('/concurrents');
+    def url
+      @url ||= GoSquared::API_ENDPOINT + '/' + @opts[:api_version]
     end
 
+    GoSquared::API_FUNCTIONS.each do | func_name |
+      class_eval %{
+        def #{func_name}(func_params={})
+          get("/#{func_name}")
+        end
+      }
+    end
   end
 
   class Event < Client
-    @url = GoSquared::EVENT_ENDPOINT
 
+    def initialize(opts={})
+      super
+    end
 
+    def url
+      @url ||= GoSquared::EVENT_ENDPOINT
+    end
+
+    def store_event(name, params={})
+      debug 4, GoSquared::DEBUG_LEVELS[:WARNING] if name.nil?
+
+      params = JSON.generate(params)
+      query_params = {
+        :_name => name
+      }
+      post('/event', query_params, params)
+    end
   end
 
 end
