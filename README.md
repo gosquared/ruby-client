@@ -56,7 +56,7 @@ gosquared_event = GoSquared::Event.new({
   :site_token => 'GSN-181546-E'
 })
 
-response = gosquared_event.storeEvent('Test Event', {
+response = gosquared_event.store_event('Test Event', {
 	:its => true,
 	:'you can' => 'store',
 	:any => 'event',
