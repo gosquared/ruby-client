@@ -1,7 +1,7 @@
 require 'json'
 require 'faraday'
 require 'uri'
-require './config/default'
+require_relative '../config/default'
 
 module GoSquared
   class Client
@@ -48,7 +48,7 @@ module GoSquared
 
     def debug(code, level, extra)
       return true if (@opts[:debugLevel] & level).zero?
-      
+
       stream = level > GoSquared::DEBUG_LEVELS[:NOTICE] ? $stdout : $stderr
 
       # Errors are machine-parseable

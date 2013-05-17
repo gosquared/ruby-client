@@ -1,4 +1,4 @@
-require './lib/client'
+require_relative './client'
 module GoSquared
   class API < Client
     API_VERSION = ENV.fetch('GOSQUARED_API_VERSION') { "latest" }
