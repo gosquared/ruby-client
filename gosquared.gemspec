@@ -20,9 +20,9 @@ Gem::Specification.new do |spec|
   spec.test_files    = Dir['test/**/*']
   spec.require_paths = ['lib']
 
-  spec.add_development_dependency 'minitest', '~> 3.2.0'
-  spec.add_development_dependency 'rake', '~> 0.9.2'
+  spec.add_development_dependency 'minitest', '~> 3.2'
+  spec.add_development_dependency 'rake', '~> 0.9'
 
-  spec.add_runtime_dependency 'faraday', '~> 0.8.5'
-  spec.add_runtime_dependency 'json', '~> 1.7.6'
+  spec.add_runtime_dependency 'faraday', '~> 0.8'
+  spec.add_runtime_dependency 'json', '~> 1.7'
 end
