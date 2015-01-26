@@ -1,4 +1,11 @@
-## GoSquared Ruby API client
+# Deprecation notice
+
+This Gem is deprecated and no longer officially supported.
+
+If you would like to integrate with the latest GoSquared APIs in Ruby, you can use the simple [HTTPS API](https://beta.gosquared.com/docs/tracking/api/) directly.
+
+---
+
 
 This module works with the [GoSquared API][api-docs], making it really easy to integrate GoSquared with your node app. You can also use it to track metrics and events in your application using GoSquared
 
