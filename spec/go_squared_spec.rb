@@ -13,24 +13,24 @@ describe GoSquared do
 	end
 
 
-	before(:each) do
-		data = 'test'
-		stub_request(:get, 'https://api.gosquared.com/trends/v2/aggregate?api_key=demo&site_token=GSN-106863-S').
-		with(headers: {'Accept'=>'*/*', 'User-Agent'=>'Ruby'}).
-		to_return(status: 200, body: data, headers: {})
-	end
-
 	it 'fetches a request from the GoSquared Trends API'do
+	data = 'test'
+	stub_request(:get, 'https://api.gosquared.com/trends/v2/aggregate?api_key=demo&site_token=GSN-106863-S').
+	with(headers: {'Accept'=>'*/*', 'User-Agent'=>'Ruby'}).
+	to_return(status: 200, body: data, headers: {})
 	gs.trends.v2.aggregate
 	expect(gs.fetch).to eq('test')
-	end
+end
 
-	it 'fetches a request from the GoSquared Trends API with paramaters'do
-	gs.trends.v2.aggregate.from('2016-06-20').to('2016-06-30')
-	.dateFormat('yyyy-mm-dd').sort('field').group(true)
-	expect(gs.fetch).to eq('params_test')
-	end
+it 'fetches a request from the GoSquared Trends API with paramaters'do
+data = 'params_test'
+stub_request(:get, "https://api.gosquared.com/trends/v2/browser?api_key=demo&site_token=GSN-181546-E&from=2016-06-20&to=2016-06-30&dateFormat=yyyy-mm-dd&sort=visits&group=true&format=json&limit=5").
+with(headers: {'Accept'=>'*/*', 'User-Agent'=>'Ruby'}).
+to_return(status: 200, body: data, headers: {})
+gs.trends.v2.browser.from('2016-06-20').to('2016-06-30')
+.date_format('yyyy-mm-dd').sort('visits').group(true).form('json').limit(5)
+expect(gs.fetch).to eq('params_test')
+end
 
-	# curl "https://api.gosquared.com/trends/v2/browser?api_key=demo&site_token=GSN-106863-S&from='2016-06-20'&to='2016-06-30'&format=json&limit=5&group=true" 
 
 end
