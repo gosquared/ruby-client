@@ -1,4 +1,10 @@
+require 'net/https'
+require 'uri'
+require 'json'
+
 class GoSquared 
+
+	class Trends
 
 	BASEURL = "https://api.gosquared.com/"
 	DIMENSIONS = %w(aggregate browser category country event language organisation os page path1 product screen_dimensions sources transactions)
@@ -32,9 +38,9 @@ class GoSquared
 
 		def fetch
 			build_url
-			puts "#{@url}"
 			uri = URI(@url)
 			response = Net::HTTP.get(uri)
+			@data = JSON.parse(response)
 		end
 
 		def build_url
@@ -80,5 +86,6 @@ class GoSquared
 			self
 		end
 
+end
 
 	end
