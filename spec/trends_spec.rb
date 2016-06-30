@@ -1,14 +1,11 @@
 describe GoSquared::Trends do 
 	subject(:gs) { described_class.new() }
 
-	DIMENSIONS = %w(aggregate browser category country event language organisation os page path1 product screen_dimensions sources transactions)
-	VERSION = %w(v1 v2 v3)
-
-	DIMENSIONS.each do |dimension|
+	GoSquared::Trends::DIMENSIONS.each do |dimension|
 		it { is_expected.to respond_to(dimension) }  
 	end
 
-	VERSION.each do |version|
+	GoSquared::Trends::VERSION.each do |version|
 		it { is_expected.to respond_to(version) }  
 	end
 
