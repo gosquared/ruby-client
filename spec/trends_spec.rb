@@ -28,7 +28,7 @@ describe GoSquared::Trends do
 	before do 
 		GoSquared::Trends::DIMENSIONS.each do |dimension|	
 			data = '{"a": [{"test": "response"}, {"with": "params"}]}'
-			stub_request(:get, "https://api.gosquared.com/trends/v2/#{dimension}?api_key=demo&site_token=GSN-106863-S?api_key=demo&date_format=yyyy-mm-dd&format=json&from=2016-06-20&group=true&limit=5&site_token=GSN-106863-S&sort=visits&to=2016-06-30").
+			stub_request(:get, "https://api.gosquared.com/trends/v2/#{dimension}?api_key=demo&site_token=GSN-106863-S&date_format=yyyy-mm-dd&format=json&from=2016-06-20&group=true&limit=5&site_token=GSN-106863-S&sort=visits&to=2016-06-30").
 			with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Host'=>'api.gosquared.com', 'User-Agent'=>'Ruby'}).
 			to_return(:status => 200, :body => data, :headers => {})
 		end
