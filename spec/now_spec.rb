@@ -11,7 +11,7 @@ describe GoSquared::Now do
 	end
 
 	GoSquared::Now::DIMENSIONS.each do |dimension|	
-		it "fetches a request from the GoSquared #{dimension}? API" do 
+		it "fetches a request from the GoSquared Now API with #{dimension} dimension" do 
 			gs.v3.send "#{dimension}"
 			expect(gs.fetch).to eq("a" => [{"test"=>"response"}])
 		end
@@ -24,7 +24,7 @@ describe GoSquared::Now do
 		to_return(:status => 200, :body => data, :headers => {})
 	end
 
-	it "fetches a request from the GoSquared Trends API with paramaters" do
+	it "fetches a request from the GoSquared Now API with paramaters" do
 		gs.v3.browsers.limit('5')
 		expect(gs.fetch).to eq("a" => [{"test"=>"response"}, {"with"=>"params"}])
 	end

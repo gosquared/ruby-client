@@ -15,17 +15,17 @@ class GoSquared
 			@api_key = api_key
 		end
 
-		DIMENSIONS.each do |dimension|
-			define_method dimension do |options|
-				@dimension = dimension + "?"
-				@data = options
+		VERSION.each do |version|
+			define_method version do
+				@version = version + "/"
 				self
 			end
 		end
 
-		VERSION.each do |version|
-			define_method version do
-				@version = version + "/"
+		DIMENSIONS.each do |dimension|
+			define_method dimension do |options|
+				@dimension = dimension 
+				@data = options
 				self
 			end
 		end
@@ -40,13 +40,12 @@ class GoSquared
 				response = https.request(request)
 			rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError,
 				Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError, Net::ProtocolError => e
-				puts "[error] HTTP error: #{e}"
+				STDERR.puts "[error] HTTP error: #{e}"
 			end
-			puts "Response #{response.code} #{response.message}: #{response.body}"
 		end
 
 		def url
-			@url = BASEURL + @version + @dimension + "api_key=#{@api_key}" + "&site_token=#{@site_token}" 
+			@url = BASEURL + @version + @dimension + "?api_key=#{@api_key}" + "&site_token=#{@site_token}" 
 		end
 
 	end
