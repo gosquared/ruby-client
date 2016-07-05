@@ -1,3 +1,4 @@
+require 'now.rb'
 require 'trends.rb'
 require 'tracking.rb'
 require 'people.rb'

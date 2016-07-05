@@ -30,7 +30,6 @@ class GoSquared
 
 			def fetch
 				build_url
-				puts "#{@url}"
 				uri = URI(@url)
 				response = Net::HTTP.get(uri)
 				@data = JSON.parse(response)
