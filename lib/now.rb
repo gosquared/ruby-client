@@ -7,10 +7,10 @@ class GoSquared
 		DIMENSIONS = %w(browsers campaigns concurrents engagement geo languages notifications 
 			organisations overview pages platforms sources time time_series visitors)
 		@@filters = {dateFormat: @date_format, from: @from, to: @to, 
-		format: @format, limit: @limit, sort: @sort, 
-		presenter: @presenter, visitors_mode: @string, href: @href, 
-		drill_limit: @drill_limit, sections: @sections,
-		minimal: @minimal, interval: @interval}
+			format: @format, limit: @limit, sort: @sort, 
+			presenter: @presenter, visitors_mode: @string, href: @href, 
+			drill_limit: @drill_limit, sections: @sections,
+			minimal: @minimal, interval: @interval}
 
 	def initialize(api_key="demo", site_token="GSN-2194840-F")
 		@site_token = site_token
@@ -33,10 +33,10 @@ class GoSquared
 
 	@@filters.each do |key, value|
 		define_method key do |argument|
-		@@filters[key] = argument
-		self
+			@@filters[key] = argument
+			self
+		end
 	end
-end
 
 	def fetch
 		build_url

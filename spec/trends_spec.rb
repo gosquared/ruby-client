@@ -20,7 +20,7 @@ describe GoSquared::Trends do
 
 	GoSquared::Trends::DIMENSIONS.each do |dimension|	
 		it "fetches a request from the GoSquared Trends API with #{dimension} dimension" do
-			gs.trends.v2.send "#{dimension}"
+			gs.v2.send "#{dimension}"
 			expect(gs.fetch).to eq("a" => [{"test"=>"response"}])
 		end
 	end
@@ -36,7 +36,7 @@ describe GoSquared::Trends do
 
 GoSquared::Trends::DIMENSIONS.each do |dimension|	
 	it "fetches a request from the GoSquared Trends API with #{dimension} dimension and paramaters" do
-	gs.trends.v2.send("#{dimension}").from('2016-06-20').to('2016-06-30')
+	gs.v2.send("#{dimension}").from('2016-06-20').to('2016-06-30')
 	.date_format('yyyy-mm-dd').sort('visits').group(true).format('json').limit(5)
 	expect(gs.fetch).to eq("a" => [{"test"=>"response"}, {"with"=>"params"}])
 end

@@ -6,7 +6,7 @@ class GoSquared
 
 	class Trends
 
-		BASEURL = "https://api.gosquared.com/"
+		BASEURL = "https://api.gosquared.com/trends/"
 		DIMENSIONS = %w(aggregate browser category country event language organisation os page path1 product screen_dimensions sources transactions)
 		VERSION = %w(v1 v2 v3)
 		@@filters = {date_format: @date_format, from: @from, to: @to, 
@@ -38,11 +38,6 @@ class GoSquared
 				end
 			end
 
-			def trends
-				@trends = 'trends/'
-				self
-			end
-
 			def fetch
 				build_url
 				uri = URI(@url)
@@ -59,7 +54,7 @@ class GoSquared
 
 			def build_url
 				array = [""]
-				@url = BASEURL + @trends + @version + @dimension + "api_key=#{@api_key}" + "&site_token=#{@site_token}"
+				@url = BASEURL + @version + @dimension + "api_key=#{@api_key}" + "&site_token=#{@site_token}"
 				@@filters.each {|key, value| array << "#{key}=#{value}" if value }
 				parameters=array.join('&')
 				@url = @url.concat(parameters)
