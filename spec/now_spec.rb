@@ -19,7 +19,7 @@ describe GoSquared::Now do
 
 	before do 
 		data = '{"a": [{"test": "response"}, {"with": "params"}]}'
-		stub_request(:get, "https://api.gosquared.com/now/v2/browsers?api_key=demo&site_token=GSN-106863-S&limit=5").
+		stub_request(:get, "https://api.gosquared.com/now/v3/browsers?api_key=demo&site_token=GSN-2194840-F&limit=5").
 		with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Host'=>'api.gosquared.com', 'User-Agent'=>'Ruby'}).
 		to_return(:status => 200, :body => data, :headers => {})
 	end
