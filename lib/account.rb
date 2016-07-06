@@ -8,6 +8,7 @@ class GoSquared
 		BASEURL = "https://api.gosquared.com/account/"
 		VERSION = %w(v1 v2 v3)
 		DIMENSIONS = %w(blocked feeds reportPreferences sharedUsers sites taggedVisitors triggerTypes webhooks)
+		DIMENSION_FILTER = %w(token webhookID visitorID triggerType)
 		@@filters = {presenter: @presenter, ip: @ip, url: @url}
 
 		def initialize(api_key, site_token)
@@ -16,6 +17,14 @@ class GoSquared
 			@bots = ""
 			@ips = ""
 			@visitor = ""
+			@dimension_filter = ""
+		end
+
+		DIMENSION_FILTER.each do |filter|
+			define_method filter do |parameter = ""|
+				@dimension_filter = "/" + parameter
+				self
+			end
 		end
 
 		VERSION.each do |version|
@@ -84,7 +93,7 @@ class GoSquared
 
 		def build_url
 			array = [""]
-			@url = BASEURL + @version + @dimension + @visitor + @bots + @ips +
+			@url = BASEURL + @version + @dimension + @dimension_filter + @visitor + @bots + @ips +
 			"?api_key=#{@api_key}" + "&site_token=#{@site_token}"
 			@@filters.each {|key, value| array << "#{key}=#{value}" if value }
 			parameters=array.join('&')
