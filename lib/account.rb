@@ -11,10 +11,11 @@ class GoSquared
 		DIMENSION_FILTER = %w(token webhookID visitorID triggerType)
 		@@filters = {presenter: @presenter, ip: @ip, url: @url, email: @email}
 
-		def initialize(api_key, site_token)
+		def initialize(api_key, site_token, client = Client.new)
 			@site_token = site_token
 			@api_key = api_key
-			@bots = ""
+			@client = client
+			@bots= ""
 			@ips = ""
 			@visitor = ""
 			@dimension_filter = ""
@@ -49,6 +50,18 @@ class GoSquared
 			end
 		end
 
+		def fetch
+			@client.get(url)
+		end
+
+		def post
+			@client.post(url, @data)
+		end
+
+		def delete
+			@client.delete(url, @data)
+		end
+
 		def bots
 			@bots = "/bots"
 		end
@@ -62,46 +75,7 @@ class GoSquared
 			@visitor = "/visitors/#{id}"
 			self
 		end
-
-		def fetch
-			uri = URI(url)
-			begin
-				response = Net::HTTP.get(uri)
-			rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError,
-				Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError, Net::ProtocolError => e
-				STDERR.puts "[error] HTTP error: #{e}"
-			end
-			@data = JSON.parse(response)
-		end
-
-		def post
-			uri = URI.parse(url)
-			begin
-				https = Net::HTTP.new(uri.host, uri.port)
-				https.use_ssl = true
-				request = Net::HTTP::Post.new(uri.request_uri, initheader = {'Content-Type' =>'application/json'})
-				request.body = "[ #{@data.to_json} ]"
-				response = https.request(request)
-			rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError,
-				Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError, Net::ProtocolError => e
-				STDERR.puts "[error] HTTP error: #{e}"
-			end
-		end
-
-		def delete
-					uri = URI.parse(url)
-			begin
-				https = Net::HTTP.new(uri.host, uri.port)
-				https.use_ssl = true
-				request = Net::HTTP::Delete.new(uri.request_uri, initheader = {'Content-Type' =>'application/json'})
-				request.body = "[ #{@data.to_json} ]"
-				response = https.request(request)
-			rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError,
-				Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError, Net::ProtocolError => e
-				STDERR.puts "[error] HTTP error: #{e}"
-			end
-		end
-
+		
 		def url
 			array = [""]
 			@url = BASEURL + @version + @dimension + @dimension_filter + @visitor + @bots + @ips +

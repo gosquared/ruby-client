@@ -1,6 +1,4 @@
-require 'net/https'
-require 'uri'
-require 'json'
+require './lib/client'
 
 class GoSquared 
 
@@ -12,9 +10,10 @@ class GoSquared
 		@@filters = {date_format: @date_format, from: @from, to: @to, 
 			format: @format, limit: @limit, sort: @sort, group: @group}
 
-			def initialize(api_key, site_token)
+			def initialize(api_key, site_token, client=Client.new)
 				@site_token = site_token
 				@api_key = api_key
+				@client = client
 			end
 
 			VERSION.each do |version|
@@ -39,24 +38,17 @@ class GoSquared
 			end
 
 			def fetch
-				uri = URI(url)
-				begin
-					response = Net::HTTP.get(uri)
-				rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError,
-					Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError, Net::ProtocolError => e
-					STDERR.puts "[error] HTTP error: #{e}"
-				end
-				@data = JSON.parse(response)
+				@client.get(url)
 			end
 
 			private
 
 			def url
 				array = [""]
-				@url = BASEURL + @version + @dimension + "?api_key=#{@api_key}" + "&site_token=#{@site_token}"
+				url = BASEURL + @version + @dimension + "?api_key=#{@api_key}" + "&site_token=#{@site_token}"
 				@@filters.each {|key, value| array << "#{key}=#{value}" if value }
 				parameters=array.join('&')
-				@url = @url.concat(parameters)
+				url.concat(parameters)
 			end
 		end
 

@@ -1,6 +1,4 @@
-require 'net/https'
-require 'uri'
-require 'json'
+require './lib/client'
 
 class GoSquared
 
@@ -10,9 +8,10 @@ class GoSquared
 		DIMENSIONS = %w(event identify pageview ping properties timeout transaction)	
 		VERSION = %w(v1 v2 v3)
 
-		def initialize(api_key, site_token)
+		def initialize(api_key, site_token, client=Client.new)
 			@site_token = site_token
 			@api_key = api_key
+			@client = client
 		end
 
 		VERSION.each do |version|
@@ -31,21 +30,11 @@ class GoSquared
 		end
 
 		def post
-			uri = URI.parse(url)
-			begin
-				https = Net::HTTP.new(uri.host, uri.port)
-				https.use_ssl = true
-				request = Net::HTTP::Post.new(uri.request_uri, initheader = {'Content-Type' =>'application/json'})
-				request.body = "[ #{@data.to_json} ]"
-				response = https.request(request)
-			rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError,
-				Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError, Net::ProtocolError => e
-				STDERR.puts "[error] HTTP error: #{e}"
-			end
+			@client.post(url, @data)
 		end
 
 		def url
-			@url = BASEURL + @version + @dimension + "?api_key=#{@api_key}" + "&site_token=#{@site_token}" 
+			url = BASEURL + @version + @dimension + "?api_key=#{@api_key}" + "&site_token=#{@site_token}" 
 		end
 
 	end

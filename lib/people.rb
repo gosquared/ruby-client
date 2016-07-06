@@ -1,6 +1,4 @@
-require 'net/https'
-require 'uri'
-require 'json'
+require './lib/client'
 
 class GoSquared
 	class People
@@ -11,11 +9,12 @@ class GoSquared
 		@@filters = {query: @query, filters: @filters, sort: @sort, 
 			format: @presenter, limit: @limit, type: @type, from: @from, to: @to}
 
-			def initialize(api_key, site_token)
+			def initialize(api_key, site_token, client =Client.new)
 				@site_token = site_token
 				@api_key = api_key
 				@person_id = ""
 				@person_filter = ""
+				@client = client
 			end
 
 			VERSION.each do |version|
@@ -46,39 +45,21 @@ class GoSquared
 				self
 			end 
 
-
 			def fetch
-				uri = URI(url)
-				begin
-					response = Net::HTTP.get(uri)
-				rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError,
-					Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError, Net::ProtocolError => e
-					STDERR.puts "[error] HTTP error: #{e}"
-				end
-				@data = JSON.parse(response)
+				@client.get(url)
 			end
 
 			def post
-				uri = URI.parse(url)
-				begin
-					https = Net::HTTP.new(uri.host, uri.port)
-					https.use_ssl = true
-					request = Net::HTTP::Post.new(uri.request_uri, initheader = {'Content-Type' =>'application/json'})
-					request.body = "[ #{@data.to_json} ]"
-					response = https.request(request)
-				rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError,
-					Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError, Net::ProtocolError => e
-					STDERR.puts "[error] HTTP error: #{e}"
-				end
+				@client.post(url, @data)
 			end
 
 			def url
 				array = [""]
-				@url = BASEURL + @version + @dimension + @person_id + @person_filter + 
+				url = BASEURL + @version + @dimension + @person_id + @person_filter + 
 				"?api_key=#{@api_key}" + "&site_token=#{@site_token}"
 				@@filters.each { |key, value| array << "#{key}=#{value}" if value }
 				parameters=array.join('&')
-				@url = @url.concat(parameters)
+				url.concat(parameters)
 			end
 
 		end
