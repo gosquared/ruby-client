@@ -64,8 +64,7 @@ class GoSquared
 		end
 
 		def fetch
-			build_url
-			uri = URI(@url)
+			uri = URI(url)
 			begin
 				response = Net::HTTP.get(uri)
 			rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError,
@@ -76,9 +75,7 @@ class GoSquared
 		end
 
 		def post
-			build_url
-			puts @url
-			uri = URI.parse(@url)
+			uri = URI.parse(url)
 			begin
 				https = Net::HTTP.new(uri.host, uri.port)
 				https.use_ssl = true
@@ -91,7 +88,7 @@ class GoSquared
 			end
 		end
 
-		def build_url
+		def url
 			array = [""]
 			@url = BASEURL + @version + @dimension + @dimension_filter + @visitor + @bots + @ips +
 			"?api_key=#{@api_key}" + "&site_token=#{@site_token}"

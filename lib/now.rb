@@ -43,8 +43,7 @@ class GoSquared
 	end
 
 	def fetch
-		build_url
-		uri = URI(@url)
+		uri = URI(url)
 		begin
 			response = Net::HTTP.get(uri)
 		rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError,
@@ -56,7 +55,7 @@ class GoSquared
 
 	private
 
-	def build_url
+	def url
 		array = [""]
 		@url = BASEURL + @version + @dimension + "?api_key=#{@api_key}" + "&site_token=#{@site_token}"
 		@@filters.each {|key, value| array << "#{key}=#{value}" if value }
