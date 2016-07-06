@@ -5,8 +5,7 @@ require 'json'
 class GoSquared
 	class Account
 		
-		BASEURL = "https://api.gosquared.com/account/"
-		VERSION = %w(v1 v2 v3)
+		BASEURL = "https://api.gosquared.com/account/v1/"
 		DIMENSIONS = %w(blocked feeds reportPreferences sharedUsers sites taggedVisitors triggerTypes webhooks)
 		DIMENSION_FILTER = %w(token webhookID visitorID triggerType)
 		@@filters = {presenter: @presenter, ip: @ip, url: @url, email: @email}
@@ -24,13 +23,6 @@ class GoSquared
 		DIMENSION_FILTER.each do |filter|
 			define_method filter do |parameter = ""|
 				@dimension_filter = "/" + parameter
-				self
-			end
-		end
-
-		VERSION.each do |version|
-			define_method version do
-				@version = version + "/"
 				self
 			end
 		end
@@ -78,7 +70,7 @@ class GoSquared
 		
 		def url
 			array = [""]
-			@url = BASEURL + @version + @dimension + @dimension_filter + @visitor + @bots + @ips +
+			@url = BASEURL + @dimension + @dimension_filter + @visitor + @bots + @ips +
 			"?api_key=#{@api_key}" + "&site_token=#{@site_token}"
 			@@filters.each {|key, value| array << "#{key}=#{value}" if value }
 			parameters=array.join('&')

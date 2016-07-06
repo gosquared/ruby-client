@@ -12,7 +12,7 @@ describe GoSquared::Account do
 
 	GoSquared::Account::DIMENSIONS.each do |dimension|	
 		it "fetches a request from the GoSquared Account API with #{dimension} dimension"  do 
-			gs.v1.send("#{dimension}")
+			gs.send("#{dimension}")
 			expect(gs.fetch).to eq("a" => [{"test"=>"response"}])
 		end
 	end
@@ -25,7 +25,7 @@ describe GoSquared::Account do
 	end
 
 	it "retrieves a site by its site token"  do 
-		gs.v1.sites.token("GSN-086224-W")
+		gs.sites.token("GSN-086224-W")
 		expect(gs.fetch).to eq("a" => [{"test"=>"response"}])
 	end
 
@@ -41,12 +41,12 @@ describe GoSquared::Account do
 	end
 
 	it "posts a request to the GoSquared Account API with an IP address to block bots"  do 
-		gs.v1.blocked.address.ip('20.15.33.99')
+		gs.blocked.address.ip('20.15.33.99')
 		expect(gs.post.code).to eq('200')
 	end
 
 	it "sends a delete request to the GoSquared Account API with an IP address to block bots"  do 
-		gs.v1.blocked.address.ip('20.15.33.99')
+		gs.blocked.address.ip('20.15.33.99')
 		expect(gs.delete.code).to eq('200')
 	end
 
@@ -58,7 +58,7 @@ describe GoSquared::Account do
 	end
 
 	it "retrieves a list of blocked visitors"  do 
-		gs.v1.blocked.visitors("test.email@gmail.com")
+		gs.blocked.visitors("test.email@gmail.com")
 		expect(gs.fetch).to eq("a" => [{"test"=>"response"}])
 	end
 

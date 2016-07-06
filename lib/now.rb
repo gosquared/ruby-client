@@ -3,9 +3,7 @@ require './lib/client'
 class GoSquared
 	class Now
 
-		BASEURL = "https://api.gosquared.com/now/"
-
-		VERSION = %w(v1 v2 v3)
+		BASEURL = "https://api.gosquared.com/now/v3/"
 		DIMENSIONS = %w(browsers campaigns concurrents engagement geo languages notifications 
 			organisations overview pages platforms sources time time_series visitors)
 @@filters = {dateFormat: @date_format, from: @from, to: @to, 
@@ -20,12 +18,6 @@ class GoSquared
 		@client = client
 	end
 
-	VERSION.each do |version|
-		define_method version do
-			@version = version + "/"
-			self
-		end
-	end
 
 	DIMENSIONS.each do |dimension|
 		define_method dimension do
@@ -49,7 +41,7 @@ class GoSquared
 
 	def url
 		array = [""]
-		@url = BASEURL + @version + @dimension + "?api_key=#{@api_key}" + "&site_token=#{@site_token}"
+		@url = BASEURL + @dimension + "?api_key=#{@api_key}" + "&site_token=#{@site_token}"
 		@@filters.each {|key, value| array << "#{key}=#{value}" if value }
 		parameters=array.join('&')
 		@url = @url.concat(parameters)

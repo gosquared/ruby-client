@@ -3,7 +3,7 @@ require './lib/client'
 class GoSquared
 	class People
 
-		BASEURL = "https://api.gosquared.com/people/"
+		BASEURL = "https://api.gosquared.com/people/v1/"
 		VERSION = %w(v1 v2 v3)
 		DIMENSIONS = %w(devices event_types people property_types feed smartgroups)
 		@@filters = {query: @query, filters: @filters, sort: @sort, 
@@ -15,13 +15,6 @@ class GoSquared
 				@person_id = ""
 				@person_filter = ""
 				@client = client
-			end
-
-			VERSION.each do |version|
-				define_method version do 
-					@version = version + "/"
-					self
-				end
 			end
 
 			DIMENSIONS.each do |dimension|
@@ -55,7 +48,7 @@ class GoSquared
 
 			def url
 				array = [""]
-				url = BASEURL + @version + @dimension + @person_id + @person_filter + 
+				url = BASEURL + @dimension + @person_id + @person_filter + 
 				"?api_key=#{@api_key}" + "&site_token=#{@site_token}"
 				@@filters.each { |key, value| array << "#{key}=#{value}" if value }
 				parameters=array.join('&')

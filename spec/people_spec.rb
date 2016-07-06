@@ -13,7 +13,7 @@ describe GoSquared::People do
 
 	GoSquared::People::DIMENSIONS.each do |dimension|	
 		it "fetches a request from the GoSquared People API with #{dimension} dimension" do
-			gs.v1.send "#{dimension}"
+			gs.send "#{dimension}"
 			expect(gs.fetch).to eq("a" => [{"test"=>"response"}])
 		end
 	end
@@ -26,7 +26,7 @@ describe GoSquared::People do
 	end
 
 	it "fetches a request from the GoSquared People API with a person_id and paramaters" do
-		gs.v1.people.person_id('example.email@example.com','devices')
+		gs.people.person_id('example.email@example.com','devices')
 		expect(gs.fetch).to eq("a" => [{"test"=>"response"}, {"with"=>"params"}])
 	end
 
@@ -38,7 +38,7 @@ describe GoSquared::People do
 	end
 
 	it "posts a request from the GoSquared the people API" do
-		gs.v1.smartgroups({name: "test_group"})
+		gs.smartgroups({name: "test_group"})
 		expect(gs.post.code).to eq('200')
 	end
 
@@ -53,7 +53,7 @@ describe GoSquared::People do
 
 	GoSquared::People::DIMENSIONS.each do |dimension|
 		it "fetches a request from the GoSquared People API with dimension and paramaters" do
-			gs.v1.send("#{dimension}").limit(5)
+			gs.send("#{dimension}").limit(5)
 			expect(gs.fetch).to eq("a" => [{"test"=>"response"}, {"with"=>"params"}])
 		end
 	end

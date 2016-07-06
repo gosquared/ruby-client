@@ -16,7 +16,7 @@ describe GoSquared::Tracking do
 
 	GoSquared::Tracking::DIMENSIONS.each do |dimension|	
 		it "posts a request to the GoSquared Track API with #{dimension} dimension" do
-			gs.v1.send "#{dimension}", ({person_id: "email:test@example.com", 
+			gs.send "#{dimension}", ({person_id: "email:test@example.com", 
 				properties:{email: "test@example.com"}})
 			expect(gs.post.code).to eq('200')
 		end
