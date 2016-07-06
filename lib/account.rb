@@ -88,6 +88,20 @@ class GoSquared
 			end
 		end
 
+		def delete
+					uri = URI.parse(url)
+			begin
+				https = Net::HTTP.new(uri.host, uri.port)
+				https.use_ssl = true
+				request = Net::HTTP::Delete.new(uri.request_uri, initheader = {'Content-Type' =>'application/json'})
+				request.body = "[ #{@data.to_json} ]"
+				response = https.request(request)
+			rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError,
+				Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError, Net::ProtocolError => e
+				STDERR.puts "[error] HTTP error: #{e}"
+			end
+		end
+
 		def url
 			array = [""]
 			@url = BASEURL + @version + @dimension + @dimension_filter + @visitor + @bots + @ips +
