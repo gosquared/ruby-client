@@ -6,7 +6,7 @@ class GoSquared
 		BASEURL = "https://api.gosquared.com/now/v3/"
 		DIMENSIONS = %w(browsers campaigns concurrents engagement geo languages notifications 
 			organisations overview pages platforms sources time time_series visitors)
-@@filters = {dateFormat: @date_format, from: @from, to: @to, 
+	@@filters = {dateFormat: @date_format, from: @from, to: @to, 
 	format: @format, limit: @limit, sort: @sort, 
 	presenter: @presenter, visitors_mode: @string, href: @href, 
 	drill_limit: @drill_limit, sections: @sections,
@@ -21,7 +21,7 @@ class GoSquared
 
 	DIMENSIONS.each do |dimension|
 		define_method dimension do
-			@dimension = dimension 
+			@@dimension = dimension 
 			self
 		end
 	end	
@@ -41,7 +41,7 @@ class GoSquared
 
 	def url
 		array = [""]
-		@url = BASEURL + @dimension + "?api_key=#{@api_key}" + "&site_token=#{@site_token}"
+		@url = BASEURL + @@dimension + "?api_key=#{@api_key}" + "&site_token=#{@site_token}"
 		@@filters.each {|key, value| array << "#{key}=#{value}" if value }
 		parameters=array.join('&')
 		@url = @url.concat(parameters)

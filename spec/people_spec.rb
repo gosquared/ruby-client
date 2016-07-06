@@ -30,17 +30,6 @@ describe GoSquared::People do
 		expect(gs.fetch).to eq("a" => [{"test"=>"response"}, {"with"=>"params"}])
 	end
 
-	before do 
-		stub_request(:post, "https://api.gosquared.com/people/v1/smartgroups?api_key=demo&site_token=GSN-106863-S").
-		with(:body => "[ {\"name\":\"test_group\"} ]",
-			:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Content-Type'=>'application/json', 'User-Agent'=>'Ruby'}).
-		to_return(:status => 200, :body => "", :headers => {})
-	end
-
-	it "posts a request from the GoSquared the people API" do
-		gs.smartgroups({name: "test_group"})
-		expect(gs.post.code).to eq('200')
-	end
 
 	GoSquared::People::DIMENSIONS.each do |dimension|	
 		before do 
