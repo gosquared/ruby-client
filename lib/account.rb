@@ -7,8 +7,8 @@ class GoSquared
 		
 		BASEURL = "https://api.gosquared.com/account/"
 		VERSION = %w(v1 v2 v3)
-		DIMENSIONS = %w(blocked feeds report_preferences shared_users sites tagged_vistors trigger_types webhooks)
-		@@filters = {presenter: @presenter, ip: @ip}
+		DIMENSIONS = %w(blocked feeds reportPreferences sharedUsers sites taggedVisitors triggerTypes webhooks)
+		@@filters = {presenter: @presenter, ip: @ip, url: @url}
 
 		def initialize(api_key, site_token)
 			@site_token = site_token
@@ -27,7 +27,7 @@ class GoSquared
 
 		DIMENSIONS.each do |dimension|
 			define_method dimension do |options = ""|
-				@dimension = dimension 
+				@dimension = dimension
 				@data = options
 				self
 			end
