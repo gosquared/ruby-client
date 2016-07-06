@@ -17,7 +17,7 @@ class GoSquared
 
 			DIMENSIONS.each do |dimension|
 				define_method dimension do
-					@dimension = dimension 
+					@@dimension = dimension 
 					self
 				end
 			end	
@@ -37,7 +37,7 @@ class GoSquared
 
 			def url
 				array = [""]
-				url = BASEURL + @dimension + "?api_key=#{@api_key}" + "&site_token=#{@site_token}"
+				url = BASEURL + @@dimension + "?api_key=#{@api_key}" + "&site_token=#{@site_token}"
 				@@filters.each {|key, value| array << "#{key}=#{value}" if value }
 				parameters=array.join('&')
 				url.concat(parameters)
