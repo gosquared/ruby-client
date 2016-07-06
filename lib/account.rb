@@ -9,7 +9,7 @@ class GoSquared
 		VERSION = %w(v1 v2 v3)
 		DIMENSIONS = %w(blocked feeds reportPreferences sharedUsers sites taggedVisitors triggerTypes webhooks)
 		DIMENSION_FILTER = %w(token webhookID visitorID triggerType)
-		@@filters = {presenter: @presenter, ip: @ip, url: @url}
+		@@filters = {presenter: @presenter, ip: @ip, url: @url, email: @email}
 
 		def initialize(api_key, site_token)
 			@site_token = site_token
