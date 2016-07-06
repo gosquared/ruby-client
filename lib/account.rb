@@ -10,7 +10,7 @@ class GoSquared
 		DIMENSIONS = %w(blocked feeds report_preferences shared_users sites tagged_vistors trigger_types webhooks)
 		@@filters = {presenter: @presenter, ip: @ip}
 
-		def initialize(api_key="demo", site_token="GSN-2194840-F")
+		def initialize(api_key, site_token)
 			@site_token = site_token
 			@api_key = api_key
 			@bots = ""
@@ -26,11 +26,12 @@ class GoSquared
 		end
 
 		DIMENSIONS.each do |dimension|
-			define_method dimension do
+			define_method dimension do |options = ""|
 				@dimension = dimension 
+				@data = options
 				self
 			end
-		end	
+		end
 
 		@@filters.each do |key, value|
 			define_method key do |argument|

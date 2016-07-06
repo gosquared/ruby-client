@@ -1,5 +1,5 @@
 describe GoSquared::Now do
-	subject(:gs) { described_class.new() }
+	subject(:gs) { described_class.new("demo", "GSN-2194840-F") }
 
 	before do 
 		GoSquared::Now::DIMENSIONS.each do |dimension|	

@@ -10,7 +10,7 @@ class GoSquared
 		DIMENSIONS = %w(event identify pageview ping properties timeout transaction)	
 		VERSION = %w(v1 v2 v3)
 
-		def initialize(api_key="1F6DLEGZKZ2QUK48", site_token="GSN-086224-W")
+		def initialize(api_key, site_token)
 			@site_token = site_token
 			@api_key = api_key
 		end

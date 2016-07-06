@@ -1,5 +1,5 @@
 describe GoSquared::Trends do 
-	subject(:gs) { described_class.new() }
+	subject(:gs) { described_class.new("demo","GSN-106863-S") }
 
 	GoSquared::Trends::DIMENSIONS.each do |dimension|
 		it { is_expected.to respond_to(dimension) }  

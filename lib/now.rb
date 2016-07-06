@@ -16,7 +16,7 @@ class GoSquared
 			drill_limit: @drill_limit, sections: @sections,
 			minimal: @minimal, interval: @interval}
 
-	def initialize(api_key="demo", site_token="GSN-2194840-F")
+	def initialize(api_key, site_token)
 		@site_token = site_token
 		@api_key = api_key
 	end

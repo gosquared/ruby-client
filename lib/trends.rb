@@ -12,7 +12,7 @@ class GoSquared
 		@@filters = {date_format: @date_format, from: @from, to: @to, 
 			format: @format, limit: @limit, sort: @sort, group: @group}
 
-			def initialize(api_key="demo", site_token="GSN-106863-S")
+			def initialize(api_key, site_token)
 				@site_token = site_token
 				@api_key = api_key
 			end

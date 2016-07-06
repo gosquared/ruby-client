@@ -11,7 +11,7 @@ class GoSquared
 		@@filters = {query: @query, filters: @filters, sort: @sort, 
 			format: @presenter, limit: @limit, type: @type, from: @from, to: @to}
 
-			def initialize(api_key="demo", site_token="GSN-106863-S")
+			def initialize(api_key, site_token)
 				@site_token = site_token
 				@api_key = api_key
 				@person_id = ""

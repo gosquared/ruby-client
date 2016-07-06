@@ -1,5 +1,5 @@
 describe GoSquared::People do
-	subject(:gs) { described_class.new() }
+	subject(:gs) { described_class.new("demo", "GSN-106863-S") }
 	
 	GoSquared::People::DIMENSIONS.each do |dimension|	
 		before do 
