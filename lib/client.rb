@@ -10,9 +10,15 @@ class Client
 			response = Net::HTTP.get(uri)
 		rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError,
 			Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError, Net::ProtocolError => e
-			STDERR.puts "[error] HTTP error: #{e}"
+			puts "[error] HTTP error: #{e}"
+			begin 
+				JSON.parse(response)
+			rescue StandardError => e 
+				puts "[error] StandardError: Could not parse JSON"
+				response = false
+			end
 		end
-		@data = JSON.parse(response)
+	@data = JSON.parse(response) if response
 	end
 
 	def post(url,data)
@@ -25,7 +31,7 @@ class Client
 		response = https.request(request)
 	rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError,
 		Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError, Net::ProtocolError => e
-		STDERR.puts "[error] HTTP error: #{e}"
+		puts "[error] HTTP error: #{e}"
 	end
 end
 
@@ -39,7 +45,7 @@ def delete(url,data)
 		response = https.request(request)
 	rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError,
 		Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError, Net::ProtocolError => e
-		STDERR.puts "[error] HTTP error: #{e}"
+		puts "[error] HTTP error: #{e}"
 	end
 end
 
