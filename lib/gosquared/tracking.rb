@@ -1,3 +1,4 @@
+require './lib/gosquared/client'
 	class Tracking
 
 		BASEURL = "https://api.gosquared.com/tracking/v1/"

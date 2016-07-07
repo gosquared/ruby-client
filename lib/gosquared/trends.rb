@@ -1,3 +1,4 @@
+require './lib/gosquared/client'
 	class Trends
 
 		BASEURL = "https://api.gosquared.com/trends/v2/"

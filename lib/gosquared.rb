@@ -12,19 +12,19 @@ class GoSquared
 	end
 
 	def trends
-		@trends ||= GoSquared::Trends.new(@api_key, @site_id)
+		@trends ||= Trends.new(@api_key, @site_id)
 	end
 
 	def tracking 
-		@tracking ||= GoSquared::Tracking.new(@api_key, @site_id)
+		@tracking ||= Tracking.new(@api_key, @site_id)
 	end
 
 	def people 
-		@people ||=  GoSquared::People.new(@api_key, @site_id)
+		@people ||=  People.new(@api_key, @site_id)
 	end
 
 	def now 
-		@now ||= GoSquared::Now.new(@api_key, @site_id)
+		@now ||= Now.new(@api_key, @site_id)
 	end
 
 	def account 

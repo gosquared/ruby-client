@@ -1,5 +1,4 @@
 require './lib/gosquared/client'
-
 	class Now
 
 		BASEURL = "https://api.gosquared.com/now/v3/"

@@ -1,6 +1,4 @@
-require 'net/https'
-require 'uri'
-require 'json'
+require './lib/gosquared/client'
 
 	class Account
 		
