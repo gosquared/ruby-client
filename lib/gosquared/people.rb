@@ -1,5 +1,3 @@
-require './lib/client'
-
 	class People
 
 		BASEURL = "https://api.gosquared.com/people/v1/"

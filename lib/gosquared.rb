@@ -1,17 +1,10 @@
-require './lib/trends'
-require './lib/tracking'
-require './lib/people'
-require './lib/now'
-require './lib/account'
-require 'forwardable'
+require './lib/gosquared/trends'
+require './lib/gosquared/tracking'
+require './lib/gosquared/people'
+require './lib/gosquared/now'
+require './lib/gosquared/account'
 
 class GoSquared 
-	extend Forwardable
-	def_delegators :@trends, :fetch
-	def_delegators :@tracking, :post
-	def_delegators :@people, :fetch
-	def_delegators :@now, :fetch
-	def_delegators :account, :fetch, :post, :delete
 
 	def initialize api_key, site_id
 		@api_key = api_key

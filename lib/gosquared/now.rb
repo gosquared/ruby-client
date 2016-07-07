@@ -1,4 +1,4 @@
-require './lib/client'
+require './lib/gosquared/client'
 
 	class Now
 
