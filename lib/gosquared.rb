@@ -7,11 +7,11 @@ require 'forwardable'
 
 class GoSquared 
 	extend Forwardable
-	def_delegators :@account, :fetch, :post, :delete
 	def_delegators :@trends, :fetch
-	def_delegators :@now, :fetch
-	def_delegators :@people, :fetch
 	def_delegators :@tracking, :post
+	def_delegators :@people, :fetch
+	def_delegators :@now, :fetch
+	def_delegators :account, :fetch, :post, :delete
 
 	def initialize api_key, site_id
 		@api_key = api_key
