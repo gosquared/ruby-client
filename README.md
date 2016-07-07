@@ -1,4 +1,4 @@
-#Run Tests
+#Example Usage
 
 ```
 2.2.2 :001 > require './lib/goSquared.rb'
