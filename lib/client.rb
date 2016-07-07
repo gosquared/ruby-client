@@ -32,7 +32,15 @@ class Client
 	rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError,
 		Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError, Net::ProtocolError => e
 		puts "[error] HTTP error: #{e}"
+		begin 
+				response.message
+			rescue StandardError => e 
+				puts "[error] StandardError: Could not print response message"
+				response = false
+			end
 	end
+	puts "Reponse Message: #{response.message}" if response
+	response
 end
 
 def delete(url,data)
@@ -46,7 +54,15 @@ def delete(url,data)
 	rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError,
 		Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError, Net::ProtocolError => e
 		puts "[error] HTTP error: #{e}"
+		begin 
+				response.message
+			rescue StandardError => e 
+				puts "[error] StandardError: Could not print response message"
+				response = false
+			end
 	end
+	puts "Reponse Message: #{response.message}" if response
+	response
 end
 
 end
