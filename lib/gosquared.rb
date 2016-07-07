@@ -2,6 +2,7 @@ require './lib/trends'
 require './lib/tracking'
 require './lib/people'
 require './lib/now'
+require './lib/account'
 
 class GoSquared 
 
@@ -11,19 +12,23 @@ class GoSquared
 	end
 
 	def trends
-	GoSquared::Trends.new(@api_key, @site_id)
+		@trends ||= GoSquared::Trends.new(@api_key, @site_id)
 	end
 
 	def tracking 
-	GoSquared::Tracking.new(@api_key, @site_id)
+		@tracking ||= GoSquared::Tracking.new(@api_key, @site_id)
 	end
 
 	def people 
-	GoSquared::People.new(@api_key, @site_id)
+		@people ||=  GoSquared::People.new(@api_key, @site_id)
 	end
 
 	def now 
-	GoSquared::Now.new(@api_key, @site_id)
+		@now ||= GoSquared::Now.new(@api_key, @site_id)
+	end
+
+	def account 
+		@account ||= Account.new(@api_key, @site_id)
 	end
 
 end

@@ -1,6 +1,5 @@
 require './lib/client'
 
-class GoSquared
 	class People
 
 		BASEURL = "https://api.gosquared.com/people/v1/"
@@ -12,15 +11,15 @@ class GoSquared
 			def initialize(api_key, site_token, client =Client.new)
 				@site_token = site_token
 				@api_key = api_key
-				@@person_id = ""
-				@@person_filter = ""
+				@person_id = ""
+				@person_filter = ""
 				@client = client
 			end
 
 			DIMENSIONS.each do |dimension|
 				define_method dimension do |options = ""|
-					@@dimension = dimension 
-					@@data = options
+					@dimension = dimension 
+					@data = options
 					self
 				end
 			end
@@ -33,8 +32,8 @@ class GoSquared
 			end
 
 			def person_id(object, filter)
-				@@person_id = "/" + object
-				@@person_filter = "/" + filter
+				@person_id = "/" + object
+				@person_filter = "/" + filter
 				self
 			end 
 
@@ -44,7 +43,7 @@ class GoSquared
 
 			def url
 				array = [""]
-				url = BASEURL + @@dimension + @@person_id + @@person_filter + 
+				url = BASEURL + @dimension + @person_id + @person_filter + 
 				"?api_key=#{@api_key}" + "&site_token=#{@site_token}"
 				@@filters.each { |key, value| array << "#{key}=#{value}" if value }
 				parameters=array.join('&')
@@ -52,4 +51,3 @@ class GoSquared
 			end
 
 		end
-	end

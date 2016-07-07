@@ -1,12 +1,8 @@
-describe GoSquared::Trends do 
+describe Trends do 
 	subject(:gs) { described_class.new("demo","GSN-106863-S") }
 
-	GoSquared::Trends::DIMENSIONS.each do |dimension|
-		it { is_expected.to respond_to(dimension) }  
-	end
-
+GoSquared::Trends::DIMENSIONS.each do |dimension|	
 	before do 
-		GoSquared::Trends::DIMENSIONS.each do |dimension|	
 			data = '{"a": [{"test": "response"}]}'
 			stub_request(:get, "https://api.gosquared.com/trends/v2/#{dimension}?api_key=demo&site_token=GSN-106863-S").
 			with(headers: {'Accept'=>'*/*', 'User-Agent'=>'Ruby'}).
@@ -21,8 +17,8 @@ describe GoSquared::Trends do
 		end
 	end
 
+GoSquared::Trends::DIMENSIONS.each do |dimension|	
 	before do 
-		GoSquared::Trends::DIMENSIONS.each do |dimension|	
 			data = '{"a": [{"test": "response"}, {"with": "params"}]}'
 			stub_request(:get, "https://api.gosquared.com/trends/v2/#{dimension}?api_key=demo&site_token=GSN-106863-S&date_format=yyyy-mm-dd&format=json&from=2016-06-20&group=true&limit=5&site_token=GSN-106863-S&sort=visits&to=2016-06-30").
 			with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Host'=>'api.gosquared.com', 'User-Agent'=>'Ruby'}).

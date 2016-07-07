@@ -1,7 +1,7 @@
-describe GoSquared::People do
+describe People do
 	subject(:gs) { described_class.new("demo", "GSN-106863-S") }
 	
-	GoSquared::People::DIMENSIONS.each do |dimension|	
+	People::DIMENSIONS.each do |dimension|	
 		before do 
 			data = '{"a": [{"test": "response"}]}'
 			stub_request(:get, "https://api.gosquared.com/people/v1/#{dimension}?api_key=demo&site_token=GSN-106863-S" 
@@ -11,7 +11,7 @@ describe GoSquared::People do
 		end
 	end
 
-	GoSquared::People::DIMENSIONS.each do |dimension|	
+	People::DIMENSIONS.each do |dimension|	
 		it "fetches a request from the GoSquared People API with #{dimension} dimension" do
 			gs.send "#{dimension}"
 			expect(gs.fetch).to eq("a" => [{"test"=>"response"}])
@@ -31,7 +31,7 @@ describe GoSquared::People do
 	end
 
 
-	GoSquared::People::DIMENSIONS.each do |dimension|	
+	People::DIMENSIONS.each do |dimension|	
 		before do 
 			data = '{"a": [{"test": "response"}, {"with": "params"}]}'
 			stub_request(:get, "https://api.gosquared.com/people/v1/#{dimension}?api_key=demo&site_token=GSN-106863-S&limit=5").

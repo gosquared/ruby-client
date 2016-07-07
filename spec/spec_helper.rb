@@ -1,3 +1,4 @@
+require 'gosquared.rb'
 require 'account.rb'
 require 'now.rb'
 require 'trends.rb'

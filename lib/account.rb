@@ -2,7 +2,6 @@ require 'net/https'
 require 'uri'
 require 'json'
 
-class GoSquared
 	class Account
 		
 		BASEURL = "https://api.gosquared.com/account/v1/"
@@ -68,9 +67,9 @@ class GoSquared
 			self
 		end
 		
-		def url
+		def url(ips = @ips)
 			array = [""]
-			@url = BASEURL + @dimension + @dimension_filter + @visitor + @bots + @ips +
+			@url = BASEURL + @dimension + @dimension_filter + @visitor + @bots + ips +
 			"?api_key=#{@api_key}" + "&site_token=#{@site_token}"
 			@@filters.each {|key, value| array << "#{key}=#{value}" if value }
 			parameters=array.join('&')
@@ -78,4 +77,3 @@ class GoSquared
 		end
 
 	end
-end

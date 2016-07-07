@@ -1,8 +1,8 @@
-describe GoSquared::Account do
+describe Account do
 	subject(:gs) { described_class.new("demo", "GSN-2194840-F") }
 
-	before do 
-		GoSquared::Account::DIMENSIONS.each do |dimension|	
+	Account::DIMENSIONS.each do |dimension|	
+		before do 
 			data = '{"a": [{"test": "response"}]}'
 			stub_request(:get, "https://api.gosquared.com/account/v1/#{dimension}?api_key=demo&site_token=GSN-2194840-F" ).
 			with(headers: {'Accept'=>'*/*', 'User-Agent'=>'Ruby'}).
@@ -10,7 +10,7 @@ describe GoSquared::Account do
 		end
 	end
 
-	GoSquared::Account::DIMENSIONS.each do |dimension|	
+	Account::DIMENSIONS.each do |dimension|	
 		it "fetches a request from the GoSquared Account API with #{dimension} dimension"  do 
 			gs.send("#{dimension}")
 			expect(gs.fetch).to eq("a" => [{"test"=>"response"}])

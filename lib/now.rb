@@ -1,6 +1,5 @@
 require './lib/client'
 
-class GoSquared
 	class Now
 
 		BASEURL = "https://api.gosquared.com/now/v3/"
@@ -21,7 +20,7 @@ class GoSquared
 
 	DIMENSIONS.each do |dimension|
 		define_method dimension do
-			@@dimension = dimension 
+			@dimension = dimension 
 			self
 		end
 	end	
@@ -41,11 +40,10 @@ class GoSquared
 
 	def url
 		array = [""]
-		@url = BASEURL + @@dimension + "?api_key=#{@api_key}" + "&site_token=#{@site_token}"
+		@url = BASEURL + @dimension + "?api_key=#{@api_key}" + "&site_token=#{@site_token}"
 		@@filters.each {|key, value| array << "#{key}=#{value}" if value }
 		parameters=array.join('&')
 		@url = @url.concat(parameters)
 	end
 
-end
 end
