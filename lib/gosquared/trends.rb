@@ -27,7 +27,9 @@ require './lib/gosquared/client'
 			end
 
 			def fetch
-				@client.get(url)
+				data = @client.get(url)
+				@@filters.each{|key, value| @@filters[key]=nil} if data
+				data
 			end
 
 			private

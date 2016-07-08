@@ -1,10 +1,10 @@
 require './lib/gosquared/client'
-	class Now
+class Now
 
-		BASEURL = "https://api.gosquared.com/now/v3/"
-		DIMENSIONS = %w(browsers campaigns concurrents engagement geo languages notifications 
-			organisations overview pages platforms sources time time_series visitors)
-	@@filters = {dateFormat: @date_format, from: @from, to: @to, 
+	BASEURL = "https://api.gosquared.com/now/v3/"
+	DIMENSIONS = %w(browsers campaigns concurrents engagement geo languages notifications 
+		organisations overview pages platforms sources time time_series visitors)
+@@filters = {dateFormat: @date_format, from: @from, to: @to, 
 	format: @format, limit: @limit, sort: @sort, 
 	presenter: @presenter, visitors_mode: @string, href: @href, 
 	drill_limit: @drill_limit, sections: @sections,
@@ -32,7 +32,9 @@ require './lib/gosquared/client'
 	end
 
 	def fetch
-		@client.get(url)
+		data = @client.get(url)
+		@@filters.each{|key, value| @@filters[key]=nil} if data
+		data
 	end
 	
 	private
