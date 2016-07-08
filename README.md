@@ -10,13 +10,6 @@ All functions listed in the API documentation are methods you can call on the Go
 gem install gosquared 
 ```
 
-locally
-
-```
-require './lib/goSquared.rb'
-
-```
-
 #Example 'Now' Endpoint Usage
 
 ```
