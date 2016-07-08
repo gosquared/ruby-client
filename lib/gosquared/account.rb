@@ -57,7 +57,7 @@ class Account
 		@bots = "/bots"
 	end
 
-	def address
+	def ips
 		@ips = "/ips"
 		self
 	end

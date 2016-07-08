@@ -3,7 +3,7 @@ class Now
 
 	BASEURL = "https://api.gosquared.com/now/v3/"
 	DIMENSIONS = %w(browsers campaigns concurrents engagement geo languages notifications 
-		organisations overview pages platforms sources time time_series visitors)
+		organisations overview pages platforms sources time timeSeries visitors)
 @@filters = {dateFormat: @date_format, from: @from, to: @to, 
 	format: @format, limit: @limit, sort: @sort, 
 	presenter: @presenter, visitors_mode: @string, href: @href, 

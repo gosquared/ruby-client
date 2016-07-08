@@ -41,12 +41,12 @@ describe Account do
 	end
 
 	it "posts a request to the GoSquared Account API with an IP address to block bots"  do 
-		gs.blocked.address.ip('20.15.33.99')
+		gs.blocked.ips.ip('20.15.33.99')
 		expect(gs.post.code).to eq('200')
 	end
 
 	it "sends a delete request to the GoSquared Account API with an IP address to block bots"  do 
-		gs.blocked.address.ip('20.15.33.99')
+		gs.blocked.ips.ip('20.15.33.99')
 		expect(gs.delete.code).to eq('200')
 	end
 
