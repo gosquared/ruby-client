@@ -64,7 +64,7 @@ gs.account.blocked.ips.ip('5.10.148.50')
 
 gs.account.post
 
-#posts the data from the 'GoSquared Account' endpoint
+#posts the data to the 'GoSquared Account' endpoint
 
 Reponse Message: OK
 => #<Net::HTTPOK 200 OK readbody=true>
@@ -107,5 +107,5 @@ gs.people.fetch
 #Run Tests
 
 ```
-Rspec
+rspec
 ```
