@@ -1,18 +1,61 @@
 ## GoSquared Ruby Gem
 
-This gems works with the GoSquared API, making it simple to integrate GoSquared with your Rails app. You can use it for both fetching metrics from your GoSquared account and also posting new events and contacts. 
+This gems works with the [GoSquared API](https://www.gosquared.com/docs/api/), making it simple to integrate GoSquared with your Rails app. You can use it for both fetching metrics from your GoSquared account and also posting new events and contacts. 
 
 All functions listed in the API documentation are methods you can call on the GoSquared class.
 
 #Installation
 
-```
+```ruby
 gem install gosquared 
 ```
 
-##Example 'Now' Endpoint Usage
+
+#Tracking API
+This is for sending data to GoSquared. It allows you to track:
+* Events
+* Transactions
+* People profiles
+
+##Track Events
+```ruby
+
+gs = GoSquared.new("demo","GSN-2194840-F")
+
+gs.tracking.event({event: {name: 'event'}})
+
+#builds the url to the 'GoSquared Tracking' endpoint with the "events" dimension and an event to add to the events list
+
+Reponse Message: OK
+=> #<Net::HTTPOK 200 OK readbody=true>
 
 ```
+
+##Track Transactions
+
+```ruby
+Transaction example here
+```
+
+##Track People
+```ruby
+People example here
+```
+
+
+#Reporting API
+This is for pulling data from your GoSquared account. It is split into 3 sections;
+* Now - realtime data
+* Trends – historical data (includes ecommerce)
+* People - user data
+* Account - administration
+
+##Now
+The Now API provides real-time concurrent information about your sites and apps, such as the number of concurrent visitors online, the most popular pages right now, the most influential traffic sources, and much more.
+
+_Now Example:_
+
+```ruby
 gs = GoSquared.new("demo","GSN-2194840-F")
 
 #instantiates new GoSquared object
@@ -28,9 +71,12 @@ gs.now.fetch
 => {"visitors"=>3, "returning"=>1, "pages"=>0, "active"=>0, "tagged"=>0}
 ```
 
-##Example 'Trends' Endpoint Usage
+##Trends
+The Trends API provides historical analytics information for any given period in a project's history. The data for the current period updates in real-time, so the figures are always fresh and up-to-date.
 
-```
+_Trends Example:_
+
+```ruby
 gs = GoSquared.new("demo","GSN-2194840-F")
 
 gs.trends.browser.from('2016-06-30').to('2016-07-07')
@@ -45,9 +91,29 @@ gs.trends.fetch
 
 ```
 
-##Example 'Account' Endpoint Usage
+##People
+
+
+```ruby
+
+gs = GoSquared.new("demo","GSN-2194840-F")
+
+gs.people.smartgroups
+
+#builds the url to the 'GoSquared People' endpoint with the "people" dimension.
+
+gs.people.fetch
+
+#fetches all smartgroups associated with the account.
 
 ```
+
+##Account
+The Account API allows you to perform administrative actions against GoSquared accounts. This includes actions like changing settings, configuration, and listing resources under the account.
+
+_Account Example:_
+
+```ruby
 
 gs = GoSquared.new("demo","GSN-2194840-F")
 
@@ -64,39 +130,9 @@ Reponse Message: OK
 
 ```
 
-##Example 'Tracking' Endpoint Usage
-
-```
-
-gs = GoSquared.new("demo","GSN-2194840-F")
-
-gs.tracking.event({event: {name: 'event'}})
-
-#builds the url to the 'GoSquared Tracking' endpoint with the "events" dimension and an event to add to the events list
-
-Reponse Message: OK
-=> #<Net::HTTPOK 200 OK readbody=true>
-
-```
-
-##Example 'People' Endpoint Usage
-
-```
-
-gs = GoSquared.new("demo","GSN-2194840-F")
-
-gs.people.smartgroups
-
-#builds the url to the 'GoSquared People' endpoint with the "people" dimension.
-
-gs.people.fetch
-
-#fetches all smartgroups associated with the account.
-
-```
 
 #Tests
 
-```
+```ruby
 rspec
 ```
