@@ -110,4 +110,3 @@ gs.people.fetch
 
 ```
 Rspec
-```
