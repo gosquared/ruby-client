@@ -4,7 +4,7 @@ This gems works with the GoSquared API, making it simple to integrate GoSquared 
 
 All functions listed in the API documentation are methods you can call on the GoSquared class.
 
-#Example Usage
+#Installation
 
 ```
 gem install gosquared 
