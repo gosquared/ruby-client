@@ -34,12 +34,22 @@ Reponse Message: OK
 ##Track Transactions
 
 ```ruby
-Transaction example here
+gs = GoSquared.new("demo","GSN-2194840-F")
+gs.tracking.transaction({ transaction: {id: "1", revenue: 50, quantity: 1, previous_transaction_timestamp: Time.new } })
+gs.tracking.post
+
+Reponse Message: OK
+=> #<Net::HTTPOK 200 OK readbody=true>
 ```
 
 ##Track People
 ```ruby
-People example here
+gs = GoSquared.new("demo","GSN-2194840-F")
+gs.tracking.identify({person_id:"email:example_email@example.com", properties: {first_name: 'Example', last_name: "User", created_at: Time.new } })
+gs.tracking.post
+
+Reponse Message: OK
+=> #<Net::HTTPOK 200 OK readbody=true>
 ```
 
 
