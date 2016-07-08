@@ -4,13 +4,13 @@ This gems works with the GoSquared API, making it simple to integrate GoSquared 
 
 All functions listed in the API documentation are methods you can call on the GoSquared class.
 
-##Example Usage
+#Example Usage
 
 ```
 gem install gosquared 
 ```
 
-#Example 'Now' Endpoint Usage
+##Example 'Now' Endpoint Usage
 
 ```
 gs = GoSquared.new("demo","GSN-2194840-F")
@@ -28,7 +28,7 @@ gs.now.fetch
 => {"visitors"=>3, "returning"=>1, "pages"=>0, "active"=>0, "tagged"=>0}
 ```
 
-#Example 'Trends' Endpoint Usage
+##Example 'Trends' Endpoint Usage
 
 ```
 gs = GoSquared.new("demo","GSN-2194840-F")
@@ -45,7 +45,7 @@ gs.trends.fetch
 
 ```
 
-#Example 'Account' Endpoint Usage
+##Example 'Account' Endpoint Usage
 
 ```
 
@@ -64,7 +64,7 @@ Reponse Message: OK
 
 ```
 
-#Example 'Tracking' Endpoint Usage
+##Example 'Tracking' Endpoint Usage
 
 ```
 
@@ -79,7 +79,7 @@ Reponse Message: OK
 
 ```
 
-#Example 'People' Endpoint Usage
+##Example 'People' Endpoint Usage
 
 ```
 
@@ -95,9 +95,7 @@ gs.people.fetch
 
 ```
 
-## Tests
-
-#Run Tests
+#Tests
 
 ```
 rspec
