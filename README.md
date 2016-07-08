@@ -104,9 +104,8 @@ gs.people.fetch
 
 ## Tests
 
-```
-
 #Run Tests
 
 ```
 Rspec
+```
