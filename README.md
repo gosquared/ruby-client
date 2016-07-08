@@ -26,6 +26,10 @@ gs.tracking.event({event: {name: 'event'}})
 
 #builds the url to the 'GoSquared Tracking' endpoint with the "events" dimension and an event to add to the events list
 
+gs.tracking.post
+
+#posts the data to the 'GoSquared Tracking' endpoint
+
 Reponse Message: OK
 => #<Net::HTTPOK 200 OK readbody=true>
 
