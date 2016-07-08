@@ -17,7 +17,7 @@ require './lib/goSquared.rb'
 
 ```
 
-#Example Now Usage
+#Example 'Now' Endpoint Usage
 
 ```
 gs = GoSquared.new("demo","GSN-2194840-F")
@@ -35,7 +35,7 @@ gs.now.fetch
 => {"visitors"=>3, "returning"=>1, "pages"=>0, "active"=>0, "tagged"=>0}
 ```
 
-#Example Trends Usage
+#Example 'Trends' Endpoint Usage
 
 ```
 gs = GoSquared.new("demo","GSN-2194840-F")
@@ -52,7 +52,9 @@ gs.trends.fetch
 
 ```
 
-#Example Account Usage
+#Example 'Account' Endpoint Usage
+
+```
 
 gs = GoSquared.new("demo","GSN-2194840-F")
 
@@ -69,7 +71,7 @@ Reponse Message: OK
 
 ```
 
-#Example Tracking Usage
+#Example 'Tracking' Endpoint Usage
 
 ```
 
@@ -84,7 +86,7 @@ Reponse Message: OK
 
 ```
 
-#Example People Usage
+#Example 'People' Endpoint Usage
 
 ```
 
