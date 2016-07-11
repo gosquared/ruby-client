@@ -5,14 +5,14 @@ $:.unshift lib unless $:.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name        = "gosquared"
-  spec.version     = "0.1.0"
+  spec.version     = "1.0.0"
   spec.authors     = ["Russell Vaughan"]
   spec.email       = ["russell@gosquared.com"]
-  spec.homepage    = "https://github.com/rusellvaughan/ruby-library"
-  spec.summary     = %q{GoSquared Ruby Client}
-  spec.description = %q{For use with the API and for tracking metrics}
+  spec.homepage    = "https://github.com/gosquared/ruby-gem"
+  spec.summary     = %q{GoSquared Ruby Library}
+  spec.description = %q{Fetching metrics from your GoSquared account and also posting new events and contacts}
 
-  spec.files         = Dir['lib/**/*', 'Gemfile', 'rubygs.gemspec', '.rspec', 'README.md']
+  spec.files         = Dir['lib/**/*', 'Gemfile', 'rubygs.gemspec', '.rspec', 'README.md', 'LICENSE']
   spec.executables   = Dir['bin/*']
   spec.test_files    = Dir['spec/**/*']
   spec.require_paths = ['lib']

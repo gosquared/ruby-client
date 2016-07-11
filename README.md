@@ -10,7 +10,6 @@ All functions listed in the API documentation are methods you can call on the Go
 gem install gosquared 
 ```
 
-
 #Tracking API
 This is for sending data to GoSquared. It allows you to track:
 * Events
@@ -52,7 +51,7 @@ Reponse Message: OK
 ```ruby
 gs = GoSquared.new("demo","GSN-2194840-F")
 
-gs.tracking.identify({person_id:"email:example_email@example.com", properties: {first_name: 'Example', last_name: "User", created_at: Time.new } })
+gs.tracking.identify({person_id:"email:example_email@example.com", properties: {first_name: 'Example', last_name: "User", created_at: Time.new, custom: {any: "properties", you: "would_like" } })
 
 gs.tracking.post
 
@@ -145,6 +144,12 @@ gs.account.post
 
 Reponse Message: OK
 => #<Net::HTTPOK 200 OK readbody=true>
+
+gs.sites.token("you_site_token")
+
+#builds the url to the 'GoSquared Account' endpoint with the "Sites" dimension and token you want to retrieve the site by.
+
+gs.sites.fetch
 
 ```
 
