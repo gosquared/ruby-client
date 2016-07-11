@@ -22,7 +22,7 @@ This is for sending data to GoSquared. It allows you to track:
 ##Track Events
 ```ruby
 
-gs = GoSquared.new("demo","GSN-2194840-F")
+gs = GoSquared.new("your_API_key","your_project_token")
 
 gs.tracking.event({event: {name: 'event'}})
 
@@ -40,7 +40,7 @@ Reponse Message: OK
 ##Track Transactions
 
 ```ruby
-gs = GoSquared.new("demo","GSN-2194840-F")
+gs = GoSquared.new("your_API_key","your_project_token")
 
 gs.tracking.transaction({ transaction: {id: "1", revenue: 50, quantity: 1, previous_transaction_timestamp: Time.new } })
 
@@ -52,7 +52,7 @@ Reponse Message: OK
 
 ##Track People
 ```ruby
-gs = GoSquared.new("demo","GSN-2194840-F")
+gs = GoSquared.new("your_API_key","your_project_token")
 
 gs.tracking.identify({person_id:"email:example_email@example.com", properties: {first_name: 'Example', last_name: "User", created_at: Time.new } })
 
@@ -76,7 +76,7 @@ The Now API provides real-time concurrent information about your sites and apps,
 _Now Example:_
 
 ```ruby
-gs = GoSquared.new("demo","GSN-2194840-F")
+gs = GoSquared.new("your_API_key","your_project_token")
 
 #instantiates new GoSquared object
 
@@ -97,7 +97,7 @@ The Trends API provides historical analytics information for any given period in
 _Trends Example:_
 
 ```ruby
-gs = GoSquared.new("demo","GSN-2194840-F")
+gs = GoSquared.new("your_API_key","your_project_token")
 
 gs.trends.browser.from('2016-06-30').to('2016-07-07')
 
@@ -116,7 +116,7 @@ gs.trends.fetch
 
 ```ruby
 
-gs = GoSquared.new("demo","GSN-2194840-F")
+gs = GoSquared.new("your_API_key","your_project_token")
 
 gs.people.smartgroups
 
@@ -135,7 +135,7 @@ _Account Example:_
 
 ```ruby
 
-gs = GoSquared.new("demo","GSN-2194840-F")
+gs = GoSquared.new("your_API_key","your_project_token")
 
 gs.account.blocked.ips.ip('5.10.148.50')
 
