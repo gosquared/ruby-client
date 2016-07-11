@@ -1,5 +1,7 @@
 ## GoSquared Ruby Gem
 
+**This is an early beta, please open an issue if you find anything not working, or to leave feedback for improvement. You can also get in touch directly: russell@gosquared.com**
+
 This gems works with the [GoSquared API](https://www.gosquared.com/docs/api/), making it simple to integrate GoSquared with your Rails app. You can use it for both fetching metrics from your GoSquared account and also posting new events and contacts. 
 
 All functions listed in the API documentation are methods you can call on the GoSquared class.
