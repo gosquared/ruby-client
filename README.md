@@ -1,82 +1,165 @@
-# Deprecation notice
+## GoSquared Ruby Gem
 
-This Gem is deprecated and no longer officially supported.
+[![Build Status](https://travis-ci.org/gosquared/ruby-gem.svg?branch=master)](https://travis-ci.org/gosquared/ruby-gem)
 
-If you would like to integrate with the latest GoSquared APIs in Ruby, you can use the simple [HTTPS API](https://beta.gosquared.com/docs/tracking/api/) directly.
+**This is an early beta, please open an issue if you find anything not working, or to leave feedback for improvement. You can also get in touch directly: russell@gosquared.com**
 
----
+This gems works with the [GoSquared API](https://www.gosquared.com/docs/api/), making it simple to integrate GoSquared with your Rails app. You can use it for both fetching metrics from your GoSquared account and also posting new events and contacts. 
 
+All functions listed in the API documentation are methods you can call on the GoSquared class.
 
-This module works with the [GoSquared API][api-docs], making it really easy to integrate GoSquared with your node app. You can also use it to track metrics and events in your application using GoSquared
-
-## Installation
-```bash
-gem install gosquared
-```
-
-## Usage
+#Installation
 
 ```ruby
-# Create an API client
-gosquared_api = GoSquared::API.new(opts)
-
-# Create Event client
-gosquared_event = GoSquared::Event.new(opts)
-
+gem install gosquared 
 ```
 
-##### Options
+#Tracking API
+This is for sending data to GoSquared. It allows you to track:
+* Events
+* Transactions
+* People profiles
 
-* api_key: API key from your [account][casa]. Required for API client, not required for event client.
-* site_token: Token for the registered site you're working with. Required.
-* debugLevel: One of:
-	* GoSquared::DEBUG_LEVELS[:ALL]
-	* GoSquared::DEBUG_LEVELS[:TRACE]
-	* GoSquared::DEBUG_LEVELS[:NOTICE]
-	* GoSquared::DEBUG_LEVELS[:WARNING]
-	* GoSquared::DEBUG_LEVELS[:FATAL]
-
-### API
+##Track Events
 ```ruby
-require 'gosquared'
 
-gosquared_api = GoSquared::API.new({
-  :api_key    => 'demo',
-  :site_token => 'GSN-181546-E'
-})
+gs = GoSquared.new("your_API_key","your_project_token")
 
-response = gosquared_api.concurrents(params)
+gs.tracking.event({event: {name: 'event'}})
+
+#builds the url to the 'GoSquared Tracking' endpoint with the "events" dimension and an event to add to the events list
+
+gs.tracking.post
+
+#posts the data to the 'GoSquared Tracking' endpoint
+
+Reponse Message: OK
+=> #<Net::HTTPOK 200 OK readbody=true>
+
 ```
 
-All functions listed in the [API documentation][api-docs] are methods you can call on the ```GoSquared::API``` class.
-
-
-### Tracking
-
-##### Events
-Send events to GoSquared:
+##Track Transactions
 
 ```ruby
-require 'gosquared'
+gs = GoSquared.new("your_API_key","your_project_token")
 
-gosquared_event = GoSquared::Event.new({
-  :site_token => 'GSN-181546-E'
-})
+gs.tracking.transaction({ transaction: {id: "1", revenue: 50, quantity: 1, previous_transaction_timestamp: Time.new } })
 
-response = gosquared_event.store_event('Test Event', {
-	:its => true,
-	:'you can' => 'store',
-	:any => 'event',
-	:properties => 'You Like'
-})
+gs.tracking.post
+
+Reponse Message: OK
+=> #<Net::HTTPOK 200 OK readbody=true>
 ```
 
-## Run tests
-Install all dependencies using ```bundle``` then:
+##Track People
+```ruby
+gs = GoSquared.new("your_API_key","your_project_token")
 
-```bash
-rake
+gs.tracking.identify({person_id:"email:example_email@example.com", properties: {first_name: 'Example', last_name: "User", created_at: Time.new, custom: {any: "properties", you: "would_like" } })
+
+gs.tracking.post
+
+Reponse Message: OK
+=> #<Net::HTTPOK 200 OK readbody=true>
 ```
 
-[api-docs]: https://www.gosquared.com/developer/latest/
-[casa]: https://www.gosquared.com/home/developer
+
+#Reporting API
+This is for pulling data from your GoSquared account. It is split into 3 sections;
+* Now - realtime data
+* Trends – historical data (includes ecommerce)
+* People - user data
+* Account - administration
+
+##Now
+The Now API provides real-time concurrent information about your sites and apps, such as the number of concurrent visitors online, the most popular pages right now, the most influential traffic sources, and much more.
+
+_Now Example:_
+
+```ruby
+gs = GoSquared.new("your_API_key","your_project_token")
+
+#instantiates new GoSquared object
+
+gs.now.concurrents
+
+#builds the url to the 'GoSquared Now' endpoint with the "Concurrents dimension"
+
+gs.now.fetch
+
+#fetches the data from the 'GoSquared Now' endpoint
+
+=> {"visitors"=>3, "returning"=>1, "pages"=>0, "active"=>0, "tagged"=>0}
+```
+
+##Trends
+The Trends API provides historical analytics information for any given period in a project's history. The data for the current period updates in real-time, so the figures are always fresh and up-to-date.
+
+_Trends Example:_
+
+```ruby
+gs = GoSquared.new("your_API_key","your_project_token")
+
+gs.trends.browser.from('2016-06-30').to('2016-07-07')
+
+#builds the url to the 'GoSquared Trends' endpoint with the "Trends dimension" and date filters
+
+gs.trends.fetch
+
+#fetches the filtered data from the 'GoSquared Trends' endpoint
+
+=> {"list"=>[{"id"=>"chrome", "browser"=>"chrome", "name"=>"Chrome", "metrics"=>{"visits"=>3}}], "cardinality"=>1, "dimension"=>"browser", "range"=>{"from"=>"2016-06-30T00:00:00+01:00", "to"=>"2016-07-07T23:59:59+01:00"}, "interval"=>"day"}
+
+```
+
+##People
+
+
+```ruby
+
+gs = GoSquared.new("your_API_key","your_project_token")
+
+gs.people.smartgroups
+
+#builds the url to the 'GoSquared People' endpoint with the "people" dimension.
+
+gs.people.fetch
+
+#fetches all smartgroups associated with the account.
+
+```
+
+##Account
+The Account API allows you to perform administrative actions against GoSquared accounts. This includes actions like changing settings, configuration, and listing resources under the account.
+
+_Account Example:_
+
+```ruby
+
+gs = GoSquared.new("your_API_key","your_project_token")
+
+gs.account.blocked.ips.ip('5.10.148.50')
+
+#builds the url to the 'GoSquared Account' endpoint with the "Blocked dimension" and ip address to add to the blocked list
+
+gs.account.post
+
+#posts the data to the 'GoSquared Account' endpoint
+
+Reponse Message: OK
+=> #<Net::HTTPOK 200 OK readbody=true>
+
+gs.sites.token("you_site_token")
+
+#builds the url to the 'GoSquared Account' endpoint with the "Sites" dimension and token you want to retrieve the site by.
+
+gs.sites.fetch
+
+```
+
+
+#Tests
+
+```ruby
+rspec
+```

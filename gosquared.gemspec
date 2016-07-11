@@ -5,24 +5,18 @@ $:.unshift lib unless $:.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name        = "gosquared"
-  spec.version     = "0.1.5"
-  spec.authors     = ["Geoff Wagstaff"]
-  spec.email       = ["geoff@gosquared.com"]
+  spec.version     = "1.0.0"
+  spec.authors     = ["Russell Vaughan"]
+  spec.email       = ["russell@gosquared.com"]
   spec.homepage    = "https://github.com/gosquared/ruby-client"
-  spec.summary     = %q{Official GoSquared Ruby Client}
-  spec.description = %q{For use with the API and for tracking metrics}
+  spec.summary     = %q{GoSquared Ruby Library}
+  spec.description = %q{A Ruby library for posting data from your application to the GoSquared Tracking API and fetching metrics from the GoSquared Reporting API.}
 
-  # Packaged like a gem so that we can easily share it between projects
-  # spec.rubyforge_project = "infrastructure"
-
-  spec.files         = Dir['lib/**/*', 'examples/**/*', 'benchmarks/**/*', 'Gemfile', 'gosquared.gemspec', 'Rakefile', 'README.md', 'LICENSE']
+  spec.files         = Dir['lib/**/*', 'Gemfile', 'rubygs.gemspec', '.rspec', 'README.md', 'LICENSE']
   spec.executables   = Dir['bin/*']
-  spec.test_files    = Dir['test/**/*']
+  spec.test_files    = Dir['spec/**/*']
   spec.require_paths = ['lib']
 
-  spec.add_development_dependency 'minitest', '~> 3.2'
-  spec.add_development_dependency 'rake', '~> 0.9'
-
-  spec.add_runtime_dependency 'faraday', '~> 0.8'
-  spec.add_runtime_dependency 'json', '~> 1.7'
+  spec.add_development_dependency 'rspec'
+  spec.add_development_dependency 'webmock'
 end

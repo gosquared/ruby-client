@@ -1,47 +1,34 @@
-require_relative './client'
-module GoSquared
-  class API < Client
-    API_VERSION = ENV.fetch('GOSQUARED_API_VERSION') { "latest" }
+require './lib/gosquared/trends'
+require './lib/gosquared/tracking'
+require './lib/gosquared/people'
+require './lib/gosquared/now'
+require './lib/gosquared/account'
 
-    def initialize(opts={})
-      super
-      debug 2, GoSquared::DEBUG_LEVELS[:WARNING] if @opts[:api_key].nil?
-      debug 3, GoSquared::DEBUG_LEVELS[:NOTICE], {:api_version => API_VERSION} if @opts[:api_version].nil?
+class GoSquared 
 
-      @req_opts[:api_key] = @opts[:api_key]
-      @opts[:api_version] ||= API_VERSION
-    end
+	def initialize api_key, site_id
+		@api_key = api_key
+		@site_id = site_id
+	end
 
-    def url
-      @url ||= GoSquared::API_ENDPOINT + '/' + @opts[:api_version]
-    end
+	def trends
+		@trends ||= Trends.new(@api_key, @site_id)
+	end
 
-    GoSquared::API_FUNCTIONS.each do | func_name |
-      define_method(func_name) { | func_params={} |
-        get("/#{func_name}", func_params)
-      }
-    end
-  end
+	def tracking 
+		@tracking ||= Tracking.new(@api_key, @site_id)
+	end
 
-  class Event < Client
+	def people 
+		@people ||=  People.new(@api_key, @site_id)
+	end
 
-    def initialize(opts={})
-      super
-    end
+	def now 
+		@now ||= Now.new(@api_key, @site_id)
+	end
 
-    def url
-      @url ||= GoSquared::EVENT_ENDPOINT
-    end
-
-    def store_event(name, params={})
-      debug 4, GoSquared::DEBUG_LEVELS[:WARNING] if name.nil?
-
-      params = JSON.generate(params)
-      query_params = {
-        :_name => name
-      }
-      post('/event', query_params, params)
-    end
-  end
+	def account 
+		@account ||= Account.new(@api_key, @site_id)
+	end
 
 end
