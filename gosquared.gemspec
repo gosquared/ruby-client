@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email       = ["russell@gosquared.com"]
   spec.homepage    = "https://github.com/gosquared/ruby-gem"
   spec.summary     = %q{GoSquared Ruby Library}
-  spec.description = %q{Fetching metrics from your GoSquared account and also posting new events and contacts}
+  spec.description = %q{A Ruby Library for posting data from your application to the GoSquared Tracking API and fetching metrics from the GoSquared Reporting API}
 
   spec.files         = Dir['lib/**/*', 'Gemfile', 'rubygs.gemspec', '.rspec', 'README.md', 'LICENSE']
   spec.executables   = Dir['bin/*']
