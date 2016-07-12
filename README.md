@@ -55,9 +55,25 @@ Reponse Message: OK
 ```ruby
 gs = GoSquared.new("your_API_key","your_project_token")
 
-gs.tracking.identify({person_id:"email:example_email@example.com", properties: {first_name: 'Example', last_name: "User", created_at: Time.new, custom: {any: "properties", you: "would_like" } } })
-
-gs.tracking.post
+gs.tracking.identify({
+  person_id: "email:user@test.com", # Required
+  
+  # Reserved property names
+  properties: {
+    name: "Test User",
+    username: "testuser",
+    phone: "+44123456789",
+    created_at:"2016-06-07T15:44:20Z", # ISO 8601 formatted String
+    company_name:"GoSquared",
+    company_industry:"Customer Analytics",
+    company_size: 15000,
+  
+    # Custom properties
+    custom: {
+      # custom_property_name: "custom property value"
+    }
+  }
+})
 
 Reponse Message: OK
 => #<Net::HTTPOK 200 OK readbody=true>
