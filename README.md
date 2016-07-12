@@ -1,6 +1,6 @@
 ## GoSquared Ruby Gem
 
-[![Build Status](https://travis-ci.org/gosquared/ruby-gem.svg?branch=master)](https://travis-ci.org/gosquared/ruby-gem)
+[![Build Status](https://travis-ci.org/gosquared/ruby-client.svg?branch=master)](https://travis-ci.org/gosquared/ruby-gem)
 
 **This is an early beta, please open an issue if you find anything not working, or to leave feedback for improvement. You can also get in touch directly: russell@gosquared.com**
 
