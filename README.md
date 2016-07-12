@@ -25,7 +25,7 @@ This is for sending data to GoSquared. It allows you to track:
 
 gs = GoSquared.new("your_API_key","your_project_token")
 
-gs.tracking.event({event: {name: 'event'}})
+gs.tracking.event({ event: { name: 'event' } })
 
 #builds the url to the 'GoSquared Tracking' endpoint with the "events" dimension and an event to add to the events list
 
@@ -44,7 +44,7 @@ Reponse Message: OK
 gs = GoSquared.new("your_API_key","your_project_token")
 
 gs.tracking.transaction({ 
-  transaction: {id: "1", revenue: 50, quantity: 1, 
+  transaction: { id: "1", revenue: 50, quantity: 1, 
   previous_transaction_timestamp: Time.new } 
   })
 
