@@ -46,8 +46,7 @@ gs = GoSquared.new("your_API_key","your_project_token")
 gs.tracking.transaction({ 
   transaction: {id: "1", revenue: 50, quantity: 1, 
   previous_transaction_timestamp: Time.new } 
-  }
-)
+  })
 
 gs.tracking.post
 
