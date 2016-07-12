@@ -14,6 +14,13 @@ All functions listed in the API documentation are methods you can call on the Go
 gem install gosquared 
 ```
 
+Then require GoSquared in your application
+
+```ruby
+require 'gosquared'
+```
+
+
 #Tracking API
 This is for sending data to GoSquared. It allows you to track:
 * Events
