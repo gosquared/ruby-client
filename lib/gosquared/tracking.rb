@@ -19,7 +19,9 @@ require './lib/gosquared/client'
 		end
 
 		def post
-			@client.post(url, @data)
+			response = @client.post(url, @data)
+			@data = nil if response.code === '200'
+			response
 		end
 
 		def url

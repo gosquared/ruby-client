@@ -46,11 +46,15 @@ class Account
 	end
 
 	def post
-		@client.post(build_url, @data)
+		response = @client.post(build_url, @data)
+		@@filters.each{|key, value| @@filters[key]=nil} if response.code === '200'
+		response
 	end
 
 	def delete
-		@client.delete(build_url, @data)
+		response = @client.post(build_url, @data)
+		@@filters.each{|key, value| @@filters[key]=nil} if response.code === '200'
+		response
 	end
 
 	def bots
