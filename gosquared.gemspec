@@ -5,7 +5,7 @@ $:.unshift lib unless $:.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name        = "gosquared"
-  spec.version     = "1.0.1"
+  spec.version     = "1.0.2"
 
   spec.authors     = ["Russell Vaughan"]
   spec.email       = ["russell@gosquared.com"]
@@ -17,6 +17,7 @@ Gem::Specification.new do |spec|
   spec.executables   = Dir['bin/*']
   spec.test_files    = Dir['spec/**/*']
   spec.require_paths = ['lib']
+  spec.licenses       = ['MIT']
 
   spec.add_development_dependency 'rspec'
   spec.add_development_dependency 'webmock'
