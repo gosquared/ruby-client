@@ -55,7 +55,7 @@ Reponse Message: OK
 ```ruby
 gs = GoSquared.new("your_API_key","your_project_token")
 
-gs.tracking.identify({person_id:"email:example_email@example.com", properties: {first_name: 'Example', last_name: "User", created_at: Time.new, custom: {any: "properties", you: "would_like" } })
+gs.tracking.identify({person_id:"email:example_email@example.com", properties: {first_name: 'Example', last_name: "User", created_at: Time.new, custom: {any: "properties", you: "would_like" } } })
 
 gs.tracking.post
 
