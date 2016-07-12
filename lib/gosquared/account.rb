@@ -40,17 +40,17 @@ class Account
 	end
 
 	def fetch
-		data = @client.get(url)
+		data = @client.get(build_url)
 		@@filters.each{|key, value| @@filters[key]=nil} if data
 		data
 	end
 
 	def post
-		@client.post(url, @data)
+		@client.post(build_url, @data)
 	end
 
 	def delete
-		@client.delete(url, @data)
+		@client.delete(build_url, @data)
 	end
 
 	def bots
@@ -67,7 +67,7 @@ class Account
 		self
 	end
 	
-	def url(ips = @ips)
+	def build_url(ips = @ips)
 		array = [""]
 		@url = BASEURL + @dimension + @dimension_filter + @visitor + @bots + ips +
 		"?api_key=#{@api_key}" + "&site_token=#{@site_token}"
