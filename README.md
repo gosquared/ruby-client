@@ -78,6 +78,8 @@ gs.tracking.identify({
   }
 })
 
+gs.tracking.post
+
 Reponse Message: OK
 => #<Net::HTTPOK 200 OK readbody=true>
 ```
