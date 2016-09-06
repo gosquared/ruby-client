@@ -1,8 +1,10 @@
+require 'tracker_inject/railtie' if defined? (Rails)
 require_relative "gosquared/trends"
 require_relative "gosquared/tracking"
 require_relative "gosquared/people"
 require_relative "gosquared/now"
 require_relative "gosquared/account"
+require_relative "config"
 
 module GoSquared
 
