@@ -1,9 +1,9 @@
-require './lib/gosquared/client'
+require_relative "client"
 	class Trends
 
 		BASEURL = "https://api.gosquared.com/trends/v2/"
 		DIMENSIONS = %w(aggregate browser category country event language organisation os page path1 product screenDimensions sources transactions)
-		@@filters = {date_format: @date_format, from: @from, to: @to, 
+		@@filters = {date_format: @date_format, from: @from, to: @to,
 			format: @format, limit: @limit, sort: @sort, group: @group}
 
 			def initialize(api_key, site_token, client=Client.new)
@@ -14,10 +14,10 @@ require './lib/gosquared/client'
 
 			DIMENSIONS.each do |dimension|
 				define_method dimension do
-					@dimension = dimension 
+					@dimension = dimension
 					self
 				end
-			end	
+			end
 
 			@@filters.each do |key, value|
 				define_method key do |argument|

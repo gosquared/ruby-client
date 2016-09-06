@@ -1,12 +1,12 @@
-require './lib/gosquared/client'
+require_relative "client"
 class Now
 
 	BASEURL = "https://api.gosquared.com/now/v3/"
-	DIMENSIONS = %w(browsers campaigns concurrents engagement geo languages notifications 
+	DIMENSIONS = %w(browsers campaigns concurrents engagement geo languages notifications
 		organisations overview pages platforms sources time timeSeries visitors)
-@@filters = {dateFormat: @date_format, from: @from, to: @to, 
-	format: @format, limit: @limit, sort: @sort, 
-	presenter: @presenter, visitors_mode: @string, href: @href, 
+@@filters = {dateFormat: @date_format, from: @from, to: @to,
+	format: @format, limit: @limit, sort: @sort,
+	presenter: @presenter, visitors_mode: @string, href: @href,
 	drill_limit: @drill_limit, sections: @sections,
 	minimal: @minimal, interval: @interval}
 
@@ -19,10 +19,10 @@ class Now
 
 	DIMENSIONS.each do |dimension|
 		define_method dimension do
-			@dimension = dimension 
+			@dimension = dimension
 			self
 		end
-	end	
+	end
 
 	@@filters.each do |key, value|
 		define_method key do |argument|
@@ -36,7 +36,7 @@ class Now
 		@@filters.each{|key, value| @@filters[key]=nil} if data
 		data
 	end
-	
+
 	private
 
 	def url

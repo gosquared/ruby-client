@@ -1,10 +1,10 @@
-require './lib/gosquared/trends'
-require './lib/gosquared/tracking'
-require './lib/gosquared/people'
-require './lib/gosquared/now'
-require './lib/gosquared/account'
+require_relative "gosquared/trends"
+require_relative "gosquared/tracking"
+require_relative "gosquared/people"
+require_relative "gosquared/now"
+require_relative "gosquared/account"
 
-class GoSquared 
+class GoSquared
 
 	def initialize api_key, site_id
 		@api_key = api_key
@@ -15,19 +15,19 @@ class GoSquared
 		@trends ||= Trends.new(@api_key, @site_id)
 	end
 
-	def tracking 
+	def tracking
 		@tracking ||= Tracking.new(@api_key, @site_id)
 	end
 
-	def people 
+	def people
 		@people ||=  People.new(@api_key, @site_id)
 	end
 
-	def now 
+	def now
 		@now ||= Now.new(@api_key, @site_id)
 	end
 
-	def account 
+	def account
 		@account ||= Account.new(@api_key, @site_id)
 	end
 

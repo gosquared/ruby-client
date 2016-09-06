@@ -1,8 +1,8 @@
-require './lib/gosquared/client'
+require_relative "client"
 	class Tracking
 
 		BASEURL = "https://api.gosquared.com/tracking/v1/"
-		DIMENSIONS = %w(event identify pageview ping properties timeout transaction)	
+		DIMENSIONS = %w(event identify pageview ping properties timeout transaction)
 
 		def initialize(api_key, site_token, client=Client.new)
 			@site_token = site_token
@@ -12,7 +12,7 @@ require './lib/gosquared/client'
 
 		DIMENSIONS.each do |dimension|
 			define_method dimension do |options|
-				@dimension = dimension 
+				@dimension = dimension
 				@data = options
 				self
 			end
@@ -25,7 +25,7 @@ require './lib/gosquared/client'
 		end
 
 		def url
-			url = BASEURL + @dimension + "?api_key=#{@api_key}" + "&site_token=#{@site_token}" 
+			url = BASEURL + @dimension + "?api_key=#{@api_key}" + "&site_token=#{@site_token}"
 		end
 
 	end

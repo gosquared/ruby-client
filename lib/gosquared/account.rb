@@ -1,7 +1,7 @@
-require './lib/gosquared/client'
+require_relative "client"
 
 class Account
-	
+
 	BASEURL = "https://api.gosquared.com/account/v1/"
 	DIMENSIONS = %w(blocked feeds reportPreferences sharedUsers sites taggedVisitors triggerTypes webhooks)
 	DIMENSION_FILTER = %w(token webhookID visitorID triggerType)
@@ -70,7 +70,7 @@ class Account
 		@visitor = "/visitors/#{id}"
 		self
 	end
-	
+
 	def build_url(ips = @ips)
 		array = [""]
 		@url = BASEURL + @dimension + @dimension_filter + @visitor + @bots + ips +

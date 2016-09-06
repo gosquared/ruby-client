@@ -1,10 +1,10 @@
-require './lib/gosquared/client'
+require_relative "client"
 class People
 
 	BASEURL = "https://api.gosquared.com/people/v1/"
 	VERSION = %w(v1 v2 v3)
 	DIMENSIONS = %w(devices eventTypes people propertyTypes feed smartgroups)
-	@@filters = {query: @query, filters: @filters, sort: @sort, 
+	@@filters = {query: @query, filters: @filters, sort: @sort,
 		format: @presenter, limit: @limit, type: @type, from: @from, to: @to}
 
 		def initialize(api_key, site_token, client =Client.new)
@@ -17,7 +17,7 @@ class People
 
 		DIMENSIONS.each do |dimension|
 			define_method dimension do |options = ""|
-				@dimension = dimension 
+				@dimension = dimension
 				@data = options
 				self
 			end
@@ -34,7 +34,7 @@ class People
 			@person_id = "/" + object
 			@person_filter = "/" + filter
 			self
-		end 
+		end
 
 		def fetch
 			data = @client.get(url)
@@ -44,7 +44,7 @@ class People
 
 		def url
 			array = [""]
-			url = BASEURL + @dimension + @person_id + @person_filter + 
+			url = BASEURL + @dimension + @person_id + @person_filter +
 			"?api_key=#{@api_key}" + "&site_token=#{@site_token}"
 			@@filters.each { |key, value| array << "#{key}=#{value}" if value }
 			parameters=array.join('&')
