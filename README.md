@@ -4,14 +4,14 @@
 
 **This is an early beta, please open an issue if you find anything not working, or to leave feedback for improvement. You can also get in touch directly: russell@gosquared.com**
 
-This gems works with the [GoSquared API](https://www.gosquared.com/docs/api/), making it simple to integrate GoSquared with your Rails app. You can use it for both fetching metrics from your GoSquared account and also posting new events and contacts. 
+This gems works with the [GoSquared API](https://www.gosquared.com/docs/api/), making it simple to integrate GoSquared with your Rails app. You can use it for both fetching metrics from your GoSquared account and also posting new events and contacts.
 
 All functions listed in the API documentation are methods you can call on the GoSquared class.
 
 #Installation
 
 ```ruby
-gem install gosquared 
+gem install gosquared
 ```
 
 Then require GoSquared in your application
@@ -30,7 +30,7 @@ This is for sending data to GoSquared. It allows you to track:
 ##Track Events
 ```ruby
 
-gs = GoSquared.new("your_API_key","your_project_token")
+gs = GoSquared::RubyLibrary.new("your_API_key","your_project_token")
 
 gs.tracking.event({ event: { name: 'event' } })
 
@@ -50,9 +50,9 @@ Reponse Message: OK
 ```ruby
 gs = GoSquared.new("your_API_key","your_project_token")
 
-gs.tracking.transaction({ 
-  transaction: { id: "1", revenue: 50, quantity: 1, 
-  previous_transaction_timestamp: Time.new } 
+gs.tracking.transaction({
+  transaction: { id: "1", revenue: 50, quantity: 1,
+  previous_transaction_timestamp: Time.new }
   })
 
 gs.tracking.post
@@ -67,7 +67,7 @@ gs = GoSquared.new("your_API_key","your_project_token")
 
 gs.tracking.identify({
   person_id: "email:user@test.com", # Required
-  
+
   # Reserved property names
   properties: {
     name: "Test User",
@@ -77,7 +77,7 @@ gs.tracking.identify({
     company_name:"GoSquared",
     company_industry:"Customer Analytics",
     company_size: 15000,
-  
+
     # Custom properties
     custom: {
       # custom_property_name: "custom property value"
