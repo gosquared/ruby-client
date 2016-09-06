@@ -8,6 +8,9 @@ This gems works with the [GoSquared API](https://www.gosquared.com/docs/api/), m
 
 All functions listed in the API documentation are methods you can call on the GoSquared class.
 
+You can generate an API key from your [GoSquared Account Settings](https://www.gosquared.com/settings/api).
+
+
 #Installation
 
 ```ruby
@@ -20,13 +23,16 @@ Then require GoSquared in your application
 require 'gosquared'
 ```
 
-If you’d like to quickly install your GoSquared javascript tracking code on all of your Rails’ views, you can easily run:
+### Quickly install Analytics and Chat 
+
+GoSquared uses a javascript code snippet to track pageviews and optionally load the GoSquared Live Chat widget.
+If you want to, you can quickly add the the code to all of your Rails’ views by running this:
 
 ```ruby
-rails generate go_squared:config ‘your_site_token'
+rails generate go_squared:config ‘your_project_token'
 ```
 
-This will insert a ```<script>``` tag automatically before the closing ```</body>``` tag on each view rendered.
+This will insert a `<script>` tag automatically before the closing `</body>` tag on each view rendered.
 
 
 #Tracking API
@@ -69,7 +75,14 @@ Reponse Message: OK
 => #<Net::HTTPOK 200 OK readbody=true>
 ```
 
-##Track People
+##Create or Update People profiles
+
+This method is useful importing existing user profiles into GoSquared people and updating profiles you have already added.
+
+It's highly recommended that you also implement the front end [javascript 'identify' method](https://www.gosquared.com/docs/api/javascript-tracking-code/identify-users) on your site. This enables us to track a the user's session activity and browser information against their People profile.
+
+We also reccomend using an email address for the `person_id`. To do this, the email address needs to be prefixed with `email:` like in the example below. 
+
 ```ruby
 gs = GoSquared::RubyLibrary.new("your_API_key","your_project_token")
 
@@ -88,7 +101,7 @@ gs.tracking.identify({
 
     # Custom properties
     custom: {
-      # custom_property_name: "custom property value"
+      # custom_property_name: "custom property value"  # You can track as many custom properties as you like
     }
   }
 })
