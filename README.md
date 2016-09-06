@@ -20,6 +20,14 @@ Then require GoSquared in your application
 require 'gosquared'
 ```
 
+If you’d like to quickly install your GoSquared javascript tracking code on all of your Rails’ views, you can easily run:
+
+```ruby
+rails generate go_squared:config ‘your_site_token'
+```
+
+This will insert a <script> tag automatically before the closing </body> tag on each view rendered.
+
 
 #Tracking API
 This is for sending data to GoSquared. It allows you to track:
@@ -48,7 +56,7 @@ Reponse Message: OK
 ##Track Transactions
 
 ```ruby
-gs = GoSquared.new("your_API_key","your_project_token")
+gs = GoSquared::RubyLibrary.new("your_API_key","your_project_token")
 
 gs.tracking.transaction({
   transaction: { id: "1", revenue: 50, quantity: 1,
@@ -63,7 +71,7 @@ Reponse Message: OK
 
 ##Track People
 ```ruby
-gs = GoSquared.new("your_API_key","your_project_token")
+gs = GoSquared::RubyLibrary.new("your_API_key","your_project_token")
 
 gs.tracking.identify({
   person_id: "email:user@test.com", # Required
@@ -105,7 +113,7 @@ The Now API provides real-time concurrent information about your sites and apps,
 _Now Example:_
 
 ```ruby
-gs = GoSquared.new("your_API_key","your_project_token")
+gs = GoSquared::RubyLibrary.new("your_API_key","your_project_token")
 
 #instantiates new GoSquared object
 
@@ -126,7 +134,7 @@ The Trends API provides historical analytics information for any given period in
 _Trends Example:_
 
 ```ruby
-gs = GoSquared.new("your_API_key","your_project_token")
+gs = GoSquared::RubyLibrary.new("your_API_key","your_project_token")
 
 gs.trends.browser.from('2016-06-30').to('2016-07-07')
 
@@ -145,7 +153,7 @@ gs.trends.fetch
 
 ```ruby
 
-gs = GoSquared.new("your_API_key","your_project_token")
+gs = GoSquared::RubyLibrary.new("your_API_key","your_project_token")
 
 gs.people.smartgroups
 
@@ -164,7 +172,7 @@ _Account Example:_
 
 ```ruby
 
-gs = GoSquared.new("your_API_key","your_project_token")
+gs = GoSquared::RubyLibrary.new("your_API_key","your_project_token")
 
 gs.account.blocked.ips.ip('5.10.148.50')
 
