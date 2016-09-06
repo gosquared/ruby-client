@@ -177,7 +177,7 @@ gs.account.post
 Reponse Message: OK
 => #<Net::HTTPOK 200 OK readbody=true>
 
-gs.account.sites.token("you_site_token")
+gs.account.sites.token("your_site_token")
 
 #builds the url to the 'GoSquared Account' endpoint with the "Sites" dimension and token you want to retrieve the site by.
 
