@@ -26,7 +26,7 @@ If you’d like to quickly install your GoSquared javascript tracking code on al
 rails generate go_squared:config ‘your_site_token'
 ```
 
-This will insert a <script> tag automatically before the closing </body> tag on each view rendered.
+This will insert a ```<script>``` tag automatically before the closing ```</body>``` tag on each view rendered.
 
 
 #Tracking API
