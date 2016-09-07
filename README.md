@@ -54,7 +54,7 @@ gs.tracking.post
 
 #posts the data to the 'GoSquared Tracking' endpoint
 
-Reponse Message: OK
+Response Message: OK
 => #<Net::HTTPOK 200 OK readbody=true>
 
 ```
@@ -71,7 +71,7 @@ gs.tracking.transaction({
 
 gs.tracking.post
 
-Reponse Message: OK
+Response Message: OK
 => #<Net::HTTPOK 200 OK readbody=true>
 ```
 
@@ -108,7 +108,7 @@ gs.tracking.identify({
 
 gs.tracking.post
 
-Reponse Message: OK
+Response Message: OK
 => #<Net::HTTPOK 200 OK readbody=true>
 ```
 
@@ -195,7 +195,7 @@ gs.account.post
 
 #posts the data to the 'GoSquared Account' endpoint
 
-Reponse Message: OK
+Response Message: OK
 => #<Net::HTTPOK 200 OK readbody=true>
 
 gs.account.sites.token("your_site_token")

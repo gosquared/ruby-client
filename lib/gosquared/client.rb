@@ -39,7 +39,7 @@ class Client
 				response = false
 			end
 	end
-	puts "Reponse Message: #{response.message}" if response
+	puts "Response Message: #{response.message}" if response
 	response
 end
 
@@ -61,7 +61,7 @@ def delete(url,data)
 				response = false
 			end
 	end
-	puts "Reponse Message: #{response.message}" if response
+	puts "Response Message: #{response.message}" if response
 	response
 end
 
