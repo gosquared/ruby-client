@@ -54,7 +54,7 @@ gs.tracking.post
 
 #posts the data to the 'GoSquared Tracking' endpoint
 
-Reponse Message: OK
+Response Message: OK
 => #<Net::HTTPOK 200 OK readbody=true>
 
 ```
@@ -71,7 +71,7 @@ gs.tracking.transaction({
 
 gs.tracking.post
 
-Reponse Message: OK
+Response Message: OK
 => #<Net::HTTPOK 200 OK readbody=true>
 ```
 
@@ -81,7 +81,7 @@ This method is useful for importing existing user profiles into GoSquared people
 
 It's highly recommended that you also implement the front end [javascript 'identify' method](https://www.gosquared.com/docs/api/javascript-tracking-code/identify-users) on your site. This enables us to track a the user's session activity and browser information against their People profile.
 
-We also reccomend using an email address for the `person_id`. To do this, the email address needs to be prefixed with `email:` like in the example below. 
+We also recommend using an email address for the `person_id`. To do this, the email address needs to be prefixed with `email:` like in the example below. 
 
 ```ruby
 gs = GoSquared::RubyLibrary.new("your_API_key","your_project_token")
@@ -108,7 +108,7 @@ gs.tracking.identify({
 
 gs.tracking.post
 
-Reponse Message: OK
+Response Message: OK
 => #<Net::HTTPOK 200 OK readbody=true>
 ```
 
@@ -195,7 +195,7 @@ gs.account.post
 
 #posts the data to the 'GoSquared Account' endpoint
 
-Reponse Message: OK
+Response Message: OK
 => #<Net::HTTPOK 200 OK readbody=true>
 
 gs.account.sites.token("your_site_token")
