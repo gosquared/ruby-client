@@ -77,7 +77,7 @@ Reponse Message: OK
 
 ##Create or Update People profiles
 
-This method is useful importing existing user profiles into GoSquared people and updating profiles you have already added.
+This method is useful for importing existing user profiles into GoSquared people and updating profiles you have already added.
 
 It's highly recommended that you also implement the front end [javascript 'identify' method](https://www.gosquared.com/docs/api/javascript-tracking-code/identify-users) on your site. This enables us to track a the user's session activity and browser information against their People profile.
 
