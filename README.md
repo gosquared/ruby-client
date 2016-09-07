@@ -81,7 +81,7 @@ This method is useful importing existing user profiles into GoSquared people and
 
 It's highly recommended that you also implement the front end [javascript 'identify' method](https://www.gosquared.com/docs/api/javascript-tracking-code/identify-users) on your site. This enables us to track a the user's session activity and browser information against their People profile.
 
-We also reccomend using an email address for the `person_id`. To do this, the email address needs to be prefixed with `email:` like in the example below. 
+We also recommend using an email address for the `person_id`. To do this, the email address needs to be prefixed with `email:` like in the example below. 
 
 ```ruby
 gs = GoSquared::RubyLibrary.new("your_API_key","your_project_token")
