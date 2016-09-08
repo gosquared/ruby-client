@@ -34,6 +34,11 @@ rails generate go_squared:config ‘your_project_token'
 
 This will insert a `<script>` tag automatically before the closing `</body>` tag on each view rendered.
 
+After generating your config file, if there are any views you would prefer not to have the tracking code automatically inserted in, you'll just need to add the following to that specific controller:
+
+```ruby
+skip_after_action :add_script
+```
 
 #Tracking API
 This is for sending data to GoSquared. It allows you to track:
