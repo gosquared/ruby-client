@@ -13,6 +13,8 @@ module GoSquared
 		def initialize api_key, site_id
 			@api_key = api_key
 			@site_id = site_id
+		raise 'api key cannot be empty/nil' if api_key.nil? || api_key.empty?
+    raise 'site_token cannot be empty/nil' if site_id.nil? || site_id.empty?
 		end
 
 		def trends
