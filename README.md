@@ -29,7 +29,7 @@ GoSquared uses a javascript code snippet to track pageviews and optionally load 
 If you want to, you can quickly add the the code to all of your Rails’ views by running this:
 
 ```ruby
-rails generate go_squared:config ‘your_project_token'
+rails generate go_squared:config 'your_project_token'
 ```
 
 This will insert a `<script>` tag automatically before the closing `</body>` tag on each view rendered.
