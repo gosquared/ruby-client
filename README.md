@@ -29,7 +29,7 @@ GoSquared uses a javascript code snippet to track pageviews and optionally load 
 If you want to, you can quickly add the the code to all of your Rails’ views by running this:
 
 ```ruby
-rails generate go_squared:config 'your_project_token'
+rails generate gosquared:config 'your_project_token'
 ```
 
 This will insert a `<script>` tag automatically before the closing `</body>` tag on each view rendered.
@@ -49,7 +49,7 @@ This is for sending data to GoSquared. It allows you to track:
 ##Track Events
 ```ruby
 
-gs = GoSquared::RubyLibrary.new("your_API_key","your_project_token")
+gs = Gosquared::RubyLibrary.new("your_API_key","your_project_token")
 
 gs.tracking.event({ event: { name: 'event' } })
 
@@ -67,7 +67,7 @@ Response Message: OK
 ##Track Transactions
 
 ```ruby
-gs = GoSquared::RubyLibrary.new("your_API_key","your_project_token")
+gs = Gosquared::RubyLibrary.new("your_API_key","your_project_token")
 
 gs.tracking.transaction({
   transaction: { id: "1", revenue: 50, quantity: 1,
@@ -89,7 +89,7 @@ It's highly recommended that you also implement the front end [javascript 'ident
 We also recommend using an email address for the `person_id`. To do this, the email address needs to be prefixed with `email:` like in the example below. 
 
 ```ruby
-gs = GoSquared::RubyLibrary.new("your_API_key","your_project_token")
+gs = Gosquared::RubyLibrary.new("your_API_key","your_project_token")
 
 gs.tracking.identify({
   person_id: "email:user@test.com", # Required
@@ -131,7 +131,7 @@ The Now API provides real-time concurrent information about your sites and apps,
 _Now Example:_
 
 ```ruby
-gs = GoSquared::RubyLibrary.new("your_API_key","your_project_token")
+gs = Gosquared::RubyLibrary.new("your_API_key","your_project_token")
 
 #instantiates new GoSquared object
 
@@ -152,7 +152,7 @@ The Trends API provides historical analytics information for any given period in
 _Trends Example:_
 
 ```ruby
-gs = GoSquared::RubyLibrary.new("your_API_key","your_project_token")
+gs = Gosquared::RubyLibrary.new("your_API_key","your_project_token")
 
 gs.trends.browser.from('2016-06-30').to('2016-07-07')
 
@@ -171,7 +171,7 @@ gs.trends.fetch
 
 ```ruby
 
-gs = GoSquared::RubyLibrary.new("your_API_key","your_project_token")
+gs = Gosquared::RubyLibrary.new("your_API_key","your_project_token")
 
 gs.people.smartgroups
 
@@ -190,7 +190,7 @@ _Account Example:_
 
 ```ruby
 
-gs = GoSquared::RubyLibrary.new("your_API_key","your_project_token")
+gs = Gosquared::RubyLibrary.new("your_API_key","your_project_token")
 
 gs.account.blocked.ips.ip('5.10.148.50')
 

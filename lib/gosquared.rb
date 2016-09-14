@@ -5,8 +5,9 @@ require_relative "gosquared/people"
 require_relative "gosquared/now"
 require_relative "gosquared/account"
 require_relative "config"
+require_relative "compatibility"
 
-module GoSquared
+module Gosquared
 
 	class RubyLibrary
 
@@ -14,7 +15,7 @@ module GoSquared
 			@api_key = api_key
 			@site_id = site_id
 		raise 'api key cannot be empty/nil' if api_key.nil? || api_key.empty?
-    raise 'site_token cannot be empty/nil' if site_id.nil? || site_id.empty?
+    	raise 'site_token cannot be empty/nil' if site_id.nil? || site_id.empty?
 		end
 
 		def trends

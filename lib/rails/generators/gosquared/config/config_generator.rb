@@ -1,6 +1,6 @@
 require 'rails/generators/base'
 
-module GoSquared
+module Gosquared
   module Generators
     class ConfigGenerator < Rails::Generators::Base
       source_root File.expand_path("../templates", __FILE__)
@@ -9,7 +9,7 @@ module GoSquared
 
       def copy_initializer_file
         @site_token = site_token
-        template("go_squared.rb.erb", File.join("config/initializers/go_squared.rb"))
+        template("gosquared.rb.erb", File.join("config/initializers/gosquared.rb"))
       end
     end
   end
