@@ -210,7 +210,7 @@ This will insert a `<script>` tag automatically before the closing `</body>` tag
 After generating your config file, if there are any controllers you would prefer not to have the tracking code automatically inserted in, you'll just need to add the following to that specific controller:
 
 ```ruby
-skip_after_action :add_script
+skip_after_action :add_gosquared_script
 ```
 
 #Tests
