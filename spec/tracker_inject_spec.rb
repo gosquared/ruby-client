@@ -38,8 +38,6 @@ if defined?(Rails)
     def html_response?
       response.content_type == "text/html"
     end
-
-
   end
 
   describe ApplicationController, :type => :controller do
@@ -51,25 +49,17 @@ if defined?(Rails)
       def new
         render :json => true
       end
-
-
     end
 
-    it "adds the GoSquared tracking code" do
+    it "adds the GoSquared tracking code if response HTML" do
      expect(controller).to receive(:add_gosquared_script)
      get :index
    end
 
-   it "add the GoSquared tracking code" do
-     expect(controller).not_to receive(:add_gosquared_script)
-     get :new
-   end
-
-   it "add the GoSquared tracking code" do
+   it "does not add the GoSquared tracking code if response not HTML" do
      expect(controller).not_to receive(:add_gosquared_script)
      get :new
    end
 
  end
-
 end
