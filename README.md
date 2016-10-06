@@ -23,23 +23,6 @@ Then require GoSquared in your application
 require 'gosquared'
 ```
 
-### Quickly install Analytics and Chat 
-
-GoSquared uses a javascript code snippet to track pageviews and optionally load the GoSquared Live Chat widget.
-If you want to, you can quickly add the the code to all of your Rails’ views by running this:
-
-```ruby
-rails generate gosquared:config 'your_project_token'
-```
-
-This will insert a `<script>` tag automatically before the closing `</body>` tag on each view rendered.
-
-After generating your config file, if there are any controllers you would prefer not to have the tracking code automatically inserted in, you'll just need to add the following to that specific controller:
-
-```ruby
-skip_after_action :add_script
-```
-
 #Tracking API
 This is for sending data to GoSquared. It allows you to track:
 * Events
@@ -211,6 +194,24 @@ gs.account.sites.fetch
 
 ```
 
+
+### Optional install of Analytics and Chat 
+
+While it is not required to make use of our library to interact with our Tracking and Reporting API's, you can also quickly install GoSquared's tracking code on your app. GoSquared uses a javascript code snippet to track pageviews and optionally load the GoSquared Live Chat widget.
+
+If you don't currently have a GoSquared tracking code on your site, you can quickly add the the code to all of your Rails’ views by running this:
+
+```ruby
+rails generate gosquared:config 'your_project_token'
+```
+
+This will insert a `<script>` tag automatically before the closing `</body>` tag on each view rendered.
+
+After generating your config file, if there are any controllers you would prefer not to have the tracking code automatically inserted in, you'll just need to add the following to that specific controller:
+
+```ruby
+skip_after_action :add_script
+```
 
 #Tests
 
