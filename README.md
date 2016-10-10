@@ -69,7 +69,7 @@ This method is useful for importing existing user profiles into GoSquared people
 
 It's highly recommended that you also implement the front end [javascript 'identify' method](https://www.gosquared.com/docs/api/javascript-tracking-code/identify-users) on your site. This enables us to track a the user's session activity and browser information against their People profile.
 
-We also recommend using an email address for the `person_id`. To do this, the email address needs to be prefixed with `email:` like in the example below. 
+We also recommend using an email address for the `person_id`. To do this, the email address needs to be prefixed with `email:` like in the example below.
 
 ```ruby
 gs = Gosquared::RubyLibrary.new("your_API_key","your_project_token")
@@ -192,25 +192,6 @@ gs.account.sites.token("your_site_token")
 
 gs.account.sites.fetch
 
-```
-
-
-### Optional install of Analytics and Chat 
-
-While it is not required to make use of our library to interact with our Tracking and Reporting API's, you can also quickly install GoSquared's tracking code on your app. GoSquared uses a javascript code snippet to track pageviews and optionally load the GoSquared Live Chat widget.
-
-If you don't currently have a GoSquared tracking code on your site, you can quickly add the the code to all of your Rails’ views by running this:
-
-```ruby
-rails generate gosquared:config 'your_project_token'
-```
-
-This will insert a `<script>` tag automatically before the closing `</body>` tag on each view rendered.
-
-After generating your config file, if there are any controllers you would prefer not to have the tracking code automatically inserted in, you'll just need to add the following to that specific controller:
-
-```ruby
-skip_after_action :add_gosquared_script
 ```
 
 #Tests
