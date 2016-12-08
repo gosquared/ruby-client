@@ -1,7 +1,7 @@
-describe Tracking do
+describe Gosquared::Tracking do
 	subject(:gs) { described_class.new("demo", "GSN-2194840-F") }
 
-	Tracking::DIMENSIONS.each do |dimension|
+	Gosquared::Tracking::DIMENSIONS.each do |dimension|
 		before do
 			stub_request(:post, "https://api.gosquared.com/tracking/v1/#{dimension}?api_key=demo&site_token=GSN-2194840-F").
 			with(:body => "[ {\"person_id\":\"email:test@example.com\",\"properties\":{\"email\":\"test@example.com\"}} ]",
@@ -10,7 +10,7 @@ describe Tracking do
 		end
 	end
 
-	Tracking::DIMENSIONS.each do |dimension|
+	Gosquared::Tracking::DIMENSIONS.each do |dimension|
 		it "posts a request to the GoSquared Track API with #{dimension} dimension" do
 			gs.send "#{dimension}", ({person_id: "email:test@example.com",
 				properties:{email: "test@example.com"}})

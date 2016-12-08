@@ -16,23 +16,23 @@ module Gosquared
 		end
 
 		def trends
-			@trends ||= Trends.new(@api_key, @site_id)
+			@trends ||= ::Trends.new(@api_key, @site_id)
 		end
 
 		def tracking
-			@tracking ||= Tracking.new(@api_key, @site_id)
+			@tracking ||= ::Tracking.new(@api_key, @site_id)
 		end
 
 		def people
-			@people ||=  People.new(@api_key, @site_id)
+			@people ||= ::People.new(@api_key, @site_id)
 		end
 
 		def now
-			@now ||= Now.new(@api_key, @site_id)
+			@now ||= ::Now.new(@api_key, @site_id)
 		end
 
 		def account
-			@account ||= Account.new(@api_key, @site_id)
+			@account ||= ::Account.new(@api_key, @site_id)
 		end
 
 	end

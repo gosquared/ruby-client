@@ -1,5 +1,7 @@
 require_relative "client"
-	class Trends
+
+module Gosquared
+  class Trends
 
 		BASEURL = "https://api.gosquared.com/trends/v2/"
 		DIMENSIONS = %w(aggregate browser category country event language organisation os page path1 product screenDimensions sources transactions)
@@ -42,3 +44,4 @@ require_relative "client"
 				url.concat(parameters)
 			end
 		end
+end
