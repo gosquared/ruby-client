@@ -1,6 +1,6 @@
 require_relative "client"
 
-class Account
+class Gosquared::Account
 
 	BASEURL = "https://api.gosquared.com/account/v1/"
 	DIMENSIONS = %w(blocked feeds reportPreferences sharedUsers sites taggedVisitors triggerTypes webhooks)
