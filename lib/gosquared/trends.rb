@@ -5,10 +5,10 @@ module Gosquared
 
 		BASEURL = "https://api.gosquared.com/trends/v2/"
 		DIMENSIONS = %w(aggregate browser category country event language organisation os page path1 product screenDimensions sources transactions)
-		@@filters = {date_format: @date_format, from: @from, to: @to,
+		@@filters = {dateFormat: @dateFormat, from: @from, to: @to,
 			format: @format, limit: @limit, sort: @sort, group: @group, source_type: @source_type}
 
-			def initialize(api_key, site_token, client=Client.new)
+			def initialize(api_key, site_token, client=Gosquared::Client.new)
 				@site_token = site_token
 				@api_key = api_key
 				@client = client
