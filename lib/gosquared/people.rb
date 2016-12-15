@@ -9,7 +9,7 @@ module Gosquared
   	@@filters = {query: @query, filters: @filters, sort: @sort,
   		format: @presenter, limit: @limit, type: @type, from: @from, to: @to}
 
-  		def initialize(api_key, site_token, client =Client.new)
+  		def initialize(api_key, site_token, client = Gosquared::Client.new)
   			@site_token = site_token
   			@api_key = api_key
   			@person_id = ""

@@ -6,7 +6,7 @@ module Gosquared
   	BASEURL = "https://api.gosquared.com/tracking/v1/"
   	DIMENSIONS = %w(event identify pageview ping properties timeout transaction)
 
-  	def initialize(api_key, site_token, client=Client.new)
+  	def initialize(api_key, site_token, client = Gosquared::Client.new)
   		@site_token = site_token
   		@api_key = api_key
   		@client = client

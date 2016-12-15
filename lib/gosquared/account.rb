@@ -7,7 +7,7 @@ module Gosquared
     DIMENSION_FILTER = %w(token webhookID visitorID triggerType).freeze
     @@filters = { presenter: @presenter, ip: @ip, url: @url, email: @email }
 
-    def initialize(api_key, site_token, client = Client.new)
+    def initialize(api_key, site_token, client = Gosquared::Client.new)
       @site_token = site_token
       @api_key = api_key
       @client = client
