@@ -5,7 +5,7 @@ module Gosquared
 
 		BASEURL = "https://api.gosquared.com/trends/v2/"
 		DIMENSIONS = %w(aggregate browser category country event language organisation os page path1 product screenDimensions sources transactions)
-		@@filters = {dateFormat: @dateFormat, from: @from, to: @to,
+		@@filters = {date_format: @date_format, from: @from, to: @to,
 			format: @format, limit: @limit, sort: @sort, group: @group,
       sourceType: @sourceType}
 
