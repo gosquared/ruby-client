@@ -1,54 +1,57 @@
 require_relative "client"
-class People
 
-	BASEURL = "https://api.gosquared.com/people/v1/"
-	VERSION = %w(v1 v2 v3)
-	DIMENSIONS = %w(devices eventTypes people propertyTypes feed smartgroups)
-	@@filters = {query: @query, filters: @filters, sort: @sort,
-		format: @presenter, limit: @limit, type: @type, from: @from, to: @to}
+module Gosquared
+  class People
 
-		def initialize(api_key, site_token, client =Client.new)
-			@site_token = site_token
-			@api_key = api_key
-			@person_id = ""
-			@person_filter = ""
-			@client = client
-		end
+  	BASEURL = "https://api.gosquared.com/people/v1/".freeze
+  	VERSION = %w(v1 v2 v3).freeze
+  	DIMENSIONS = %w(devices eventTypes people propertyTypes feed smartgroups).freeze
+  	@@filters = {query: @query, filters: @filters, sort: @sort,
+  		format: @presenter, limit: @limit, type: @type, from: @from, to: @to}
 
-		DIMENSIONS.each do |dimension|
-			define_method dimension do |options = ""|
-				@dimension = dimension
-				@data = options
-				self
-			end
-		end
+  		def initialize(api_key, site_token, client = Gosquared::Client.new)
+  			@site_token = site_token
+  			@api_key = api_key
+  			@person_id = ""
+  			@person_filter = ""
+  			@client = client
+  		end
 
-		@@filters.each do |key, value|
-			define_method key do |argument|
-				@@filters[key] = argument
-				self
-			end
-		end
+  		DIMENSIONS.each do |dimension|
+  			define_method dimension do |options = ""|
+  				@dimension = dimension
+  				@data = options
+  				self
+  			end
+  		end
 
-		def person_id(object, filter)
-			@person_id = "/" + object
-			@person_filter = "/" + filter
-			self
-		end
+  		@@filters.each do |key, value|
+  			define_method key do |argument|
+  				@@filters[key] = argument
+  				self
+  			end
+  		end
 
-		def fetch
-			data = @client.get(url)
-			@@filters.each{|key, value| @@filters[key]=nil} if data
-			data
-		end
+  		def person_id(object, filter)
+  			@person_id = "/" + object
+  			@person_filter = "/" + filter
+  			self
+  		end
 
-		def url
-			array = [""]
-			url = BASEURL + @dimension + @person_id + @person_filter +
-			"?api_key=#{@api_key}" + "&site_token=#{@site_token}"
-			@@filters.each { |key, value| array << "#{key}=#{value}" if value }
-			parameters=array.join('&')
-			url.concat(parameters)
-		end
+  		def fetch
+  			data = @client.get(url)
+  			@@filters.each{|key, value| @@filters[key]=nil} if data
+  			data
+  		end
 
-	end
+  		def url
+  			array = [""]
+  			url = BASEURL + @dimension + @person_id + @person_filter +
+  			"?api_key=#{@api_key}" + "&site_token=#{@site_token}"
+  			@@filters.each { |key, value| array << "#{key}=#{value}" if value }
+  			parameters=array.join('&')
+  			url.concat(parameters)
+  		end
+
+  	end
+end
