@@ -3,10 +3,10 @@ require_relative "client"
 module Gosquared
   class Now
 
-  	BASEURL = "https://api.gosquared.com/now/v3/"
+  	BASEURL = "https://api.gosquared.com/now/v3/".freeze
   	DIMENSIONS = %w(browsers campaigns concurrents engagement geo languages notifications
-  		organisations overview pages platforms sources time timeSeries visitors)
-  @@filters = {dateFormat: @date_format, from: @from, to: @to,
+  		organisations overview pages platforms sources time timeSeries visitors).freeze
+  @@filters = {date_format: @date_format, from: @from, to: @to,
   	format: @format, limit: @limit, sort: @sort,
   	presenter: @presenter, visitors_mode: @string, href: @href,
   	drill_limit: @drill_limit, sections: @sections,

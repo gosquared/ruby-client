@@ -3,8 +3,8 @@ require_relative "client"
 module Gosquared
   class Tracking
 
-  	BASEURL = "https://api.gosquared.com/tracking/v1/"
-  	DIMENSIONS = %w(event identify pageview ping properties timeout transaction)
+  	BASEURL = "https://api.gosquared.com/tracking/v1/".freeze
+  	DIMENSIONS = %w(event identify pageview ping properties timeout transaction).freeze
 
   	def initialize(api_key, site_token, client = Gosquared::Client.new)
   		@site_token = site_token
