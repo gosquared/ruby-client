@@ -3,9 +3,9 @@ require_relative "client"
 module Gosquared
   class People
 
-  	BASEURL = "https://api.gosquared.com/people/v1/"
-  	VERSION = %w(v1 v2 v3)
-  	DIMENSIONS = %w(devices eventTypes people propertyTypes feed smartgroups)
+  	BASEURL = "https://api.gosquared.com/people/v1/".freeze
+  	VERSION = %w(v1 v2 v3).freeze
+  	DIMENSIONS = %w(devices eventTypes people propertyTypes feed smartgroups).freeze
   	@@filters = {query: @query, filters: @filters, sort: @sort,
   		format: @presenter, limit: @limit, type: @type, from: @from, to: @to}
 

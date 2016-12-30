@@ -3,11 +3,11 @@ require_relative "client"
 module Gosquared
   class Trends
 
-		BASEURL = "https://api.gosquared.com/trends/v2/"
-		DIMENSIONS = %w(aggregate browser category country event language organisation os page path1 product screenDimensions sources transactions)
-		@@filters = {dateFormat: @dateFormat, from: @from, to: @to,
+		BASEURL = "https://api.gosquared.com/trends/v2/".freeze
+		DIMENSIONS = %w(aggregate browser category country event language organisation os page path1 product screenDimensions sources transactions).freeze
+		@@filters = {date_format: @date_format, from: @from, to: @to,
 			format: @format, limit: @limit, sort: @sort, group: @group,
-      sourceType: @sourceType}
+      source_type: @source_type}
 
 			def initialize(api_key, site_token, client = Gosquared::Client.new)
 				@site_token = site_token
