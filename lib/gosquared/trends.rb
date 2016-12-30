@@ -40,7 +40,7 @@ module Gosquared
 			def url
 				array = [""]
 				url = BASEURL + @dimension + "?api_key=#{@api_key}" + "&site_token=#{@site_token}"
-				@@filters.each {|key, value| array << "#{key.camelize(:lower)}=#{value}" if value }
+				@@filters.each {|key, value| array << "#{key.to_s.camelize(:lower)}=#{value}" if value }
 				parameters=array.join('&')
 				url.concat(parameters)
 			end
