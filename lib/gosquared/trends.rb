@@ -40,9 +40,13 @@ module Gosquared
 			def url
 				array = [""]
 				url = BASEURL + @dimension + "?api_key=#{@api_key}" + "&site_token=#{@site_token}"
-				@@filters.each {|key, value| array << "#{key.to_s.camelize(:lower)}=#{value}" if value }
+				@@filters.each {|key, value| array << "#{camelize(key.to_s)}=#{value}" if value }
 				parameters=array.join('&')
 				url.concat(parameters)
 			end
+
+      def camelize(key)
+        key.split('_').each_with_index.map{|fragment, index| index == 0 ? fragment : fragment.capitalize }.join('')
+      end
 		end
 end
