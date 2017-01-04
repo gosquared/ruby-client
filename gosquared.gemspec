@@ -5,7 +5,7 @@ $:.unshift lib unless $:.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name        = "gosquared"
-  spec.version     = "3.0.1"
+  spec.version     = "3.0.3"
 
   spec.authors     = ["Russell Vaughan"]
   spec.email       = ["russell@gosquared.com"]
