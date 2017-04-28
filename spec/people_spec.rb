@@ -13,6 +13,7 @@ describe Gosquared::People do
 
 	Gosquared::People::DIMENSIONS.each do |dimension|
 		it "fetches a request from the GoSquared People API with #{dimension} dimension" do
+			next if dimension == "people"
 			gs.send "#{dimension}"
 			expect(gs.fetch).to eq("a" => [{"test"=>"response"}])
 		end
