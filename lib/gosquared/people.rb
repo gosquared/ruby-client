@@ -28,39 +28,53 @@ module Gosquared
   			define_method key do |argument|
   				@@filters[key] = argument
           puts @@filters[key]
-  				self
-  			end
-  		end
+          self
+        end
+      end
 
-  		def person_id(object, filter)
-  			@person_id = "/" + object
-  			@person_filter = "/" + filter
-  			self
-  		end
+      def person_id(object, filter)
+       @person_id = "/" + object
+       @person_filter = "/" + filter
+       self
+     end
 
-  		def fetch
-  			data = Client.new.get(url)
-  			@@filters.each{|key, value| @@filters[key]=nil} if data
-  			data
-  		end
+     def fetch
+       data = Client.new.get(url)
+       @@filters.each{|key, value| @@filters[key]=nil} if data
+       data
+     end
 
-  		def url
-  			array = [""]
-  			url = BASEURL + @dimension + @person_id + @person_filter +
-  			"?api_key=#{@api_key}" + "&site_token=#{@site_token}"
-  			@@filters.each do |key, value|
+     def url
+       array = [""]
+       url = BASEURL + @dimension + @person_id + @person_filter +
+       "?api_key=#{@api_key}" + "&site_token=#{@site_token}"
+       @@filters.each do |key, value|
         if @dimension=="people" && key == :filters && value.is_a?(Array)
-          puts "here"
           json_object=JSON.generate(value)
           filter_request=URI.escape(json_object, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
           array << "#{key}=#{filter_request}"
         else
-        array << "#{key}=#{value}" if value
+          array << "#{key}=#{value}" if value
         end
-        end
-  			parameters=array.join('&')
-  			url.concat(parameters)
-  		end
+      end
+      parameters=array.join('&')
+      url.concat(parameters)
+    end
 
-  	end
+    def post
+      puts @data
+      check_for_nil_user
+      response = Client.new.post(url, @data)
+      @data = nil if response.code === '200'
+      response
+    end
+
+    def check_for_nil_user
+      if @data.key?(:person_id) && @data[:person_id] == nil
+        @data.tap { |data| @data.delete(:person_id) }
+        warn 'person_id is nil, event will not be track against a user'
+      end
+    end
+
+  end
 end
