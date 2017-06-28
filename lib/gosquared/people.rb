@@ -5,7 +5,7 @@ module Gosquared
 
   	BASEURL = "https://api.gosquared.com/people/v1/".freeze
   	VERSION = %w(v1 v2 v3).freeze
-  	DIMENSIONS = %w(devices eventTypes people propertyTypes feed smartgroups).freeze
+  	DIMENSIONS = %w(devices eventTypes people propertyTypes feed).freeze
   	@@filters = {query: @query, filters: @filters, sort: @sort,
   		format: @presenter, limit: @limit, type: @type, from: @from, to: @to}
 
@@ -36,6 +36,14 @@ module Gosquared
        @person_id = "/" + object
        @person_filter = "/" + filter
        self
+     end
+
+     def smartgroups(group_id=nil)
+     if group_id
+     @dimension = "smartgroups/#{group_id}/people"
+     else @dimension = "smartgroups"
+     end
+     self
      end
 
      def fetch
