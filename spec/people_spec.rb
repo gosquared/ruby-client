@@ -85,7 +85,17 @@ describe Gosquared::People do
 		stub_request(:get, "https://api.gosquared.com/people/v1/smartgroups/wat/people?api_key=demo&site_token=GSN-106863-S").
     with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Host'=>'api.gosquared.com', 'User-Agent'=>'Ruby'}).
     to_return(:status => 200, :body => data, :headers => {})
-		gs.people.smartgroups('wat')
+		gs.people.smartgroups('wat','people')
+		expect(gs.fetch).to eq("a" => [{"test"=>"response"}])
+		end
+
+
+		it "fetches the people in a smartgroup from the GoSquared People API" do
+		data = '{"a": [{"test": "response"}]}'
+		stub_request(:get, "https://api.gosquared.com/people/v1/smartgroups/wat/count/latest?api_key=demo&site_token=GSN-106863-S").
+    with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Host'=>'api.gosquared.com', 'User-Agent'=>'Ruby'}).
+    to_return(:status => 200, :body => data, :headers => {})
+		gs.people.smartgroups('wat','count')
 		expect(gs.fetch).to eq("a" => [{"test"=>"response"}])
 		end
 

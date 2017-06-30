@@ -38,9 +38,10 @@ module Gosquared
        self
      end
 
-     def smartgroups(group_id=nil)
+     def smartgroups(group_id=nil, filter=nil)
      if group_id
-     @dimension = "smartgroups/#{group_id}/people"
+     @dimension = "smartgroups/#{group_id}/people" if filter == "people"
+     @dimension = "smartgroups/#{group_id}/count/latest" if filter== "count"
      else @dimension = "smartgroups"
      end
      self
