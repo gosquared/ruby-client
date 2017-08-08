@@ -6,6 +6,8 @@ require_relative "gosquared/account"
 
 module Gosquared
 
+	VERSION = "3.0.6"
+
 	class RubyLibrary
 
 		def initialize api_key, site_id

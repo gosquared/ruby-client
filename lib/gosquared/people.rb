@@ -71,7 +71,6 @@ module Gosquared
     end
 
     def post
-      puts @data
       check_for_nil_user
       response = Client.new.post(url, @data)
       @data = nil if response.code === '200'
