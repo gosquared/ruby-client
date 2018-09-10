@@ -40,7 +40,7 @@ module Gosquared
   				response = false
   			end
   	end
-  	puts "Response Message: #{response.message}" if response
+      
   	response
   end
 
@@ -62,7 +62,7 @@ module Gosquared
   				response = false
   			end
   	end
-  	puts "Response Message: #{response.message}" if response
+    
   	response
   end
 
