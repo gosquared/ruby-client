@@ -33,11 +33,11 @@ describe Gosquared::Account do
 
 	before do
 		stub_request(:post, "https://api.gosquared.com/account/v1/blocked/ips?api_key=demo&ip=20.15.33.99&site_token=GSN-2194840-F").
-		with(:body => "[ \"\" ]",
+		with(:body => "[\"\"]",
 			:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Content-Type'=>'application/json'}).
 		to_return(:status => 200, :body => "", :headers => {})
 		stub_request(:delete, "https://api.gosquared.com/account/v1/blocked/ips?api_key=demo&ip=20.15.33.99&site_token=GSN-2194840-F").
-		with(:body => "[ \"\" ]",
+		with(:body => "[\"\"]",
 			:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Content-Type'=>'application/json'}).
 		to_return(:status => 200, :body => "", :headers => {})
 	end
