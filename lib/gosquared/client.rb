@@ -28,7 +28,7 @@ module Gosquared
   		https = Net::HTTP.new(uri.host, uri.port)
   		https.use_ssl = true
   		request = Net::HTTP::Post.new(uri.request_uri, initheader = {'Content-Type' =>'application/json', 'User-Agent' => 'ruby-client/'+ VERSION})
-      request.body = "[ #{data.to_json} ]"
+      request.body = "[#{data.to_json}]"
   		response = https.request(request)
   	rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError,
   		Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError, Net::ProtocolError => e
@@ -50,7 +50,7 @@ module Gosquared
   		https = Net::HTTP.new(uri.host, uri.port)
   		https.use_ssl = true
   		request = Net::HTTP::Delete.new(uri.request_uri, initheader = {'Content-Type' =>'application/json'})
-  		request.body = "[ #{data.to_json} ]"
+  		request.body = "[#{data.to_json}]"
   		response = https.request(request)
   	rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError,
   		Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError, Net::ProtocolError => e
