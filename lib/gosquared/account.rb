@@ -3,8 +3,8 @@ require_relative 'client'
 module Gosquared
   class Account
     BASEURL = 'https://api.gosquared.com/account/v1/'.freeze
-    DIMENSIONS = %w(blocked feeds reportPreferences sharedUsers sites taggedVisitors triggerTypes webhooks).freeze
-    DIMENSION_FILTER = %w(token webhookID visitorID triggerType).freeze
+    DIMENSIONS = %w[blocked feeds reportPreferences sharedUsers sites taggedVisitors triggerTypes webhooks].freeze
+    DIMENSION_FILTER = %w[token webhookID visitorID triggerType].freeze
     @@filters = { presenter: @presenter, ip: @ip, url: @url, email: @email }
 
     def initialize(api_key, site_token, client = Gosquared::Client.new)

@@ -1,53 +1,50 @@
-require_relative "client"
+require_relative 'client'
 
 module Gosquared
   class Now
+    BASEURL = 'https://api.gosquared.com/now/v3/'.freeze
+    DIMENSIONS = %w[browsers campaigns concurrents engagement geo languages notifications
+                    organisations overview pages platforms sources time timeSeries visitors].freeze
+    @@filters = { date_format: @date_format, from: @from, to: @to,
+                  format: @format, limit: @limit, sort: @sort,
+                  presenter: @presenter, visitors_mode: @string, href: @href,
+                  drill_limit: @drill_limit, sections: @sections,
+                  minimal: @minimal, interval: @interval }
 
-  	BASEURL = "https://api.gosquared.com/now/v3/".freeze
-  	DIMENSIONS = %w(browsers campaigns concurrents engagement geo languages notifications
-  		organisations overview pages platforms sources time timeSeries visitors).freeze
-  @@filters = {date_format: @date_format, from: @from, to: @to,
-  	format: @format, limit: @limit, sort: @sort,
-  	presenter: @presenter, visitors_mode: @string, href: @href,
-  	drill_limit: @drill_limit, sections: @sections,
-  	minimal: @minimal, interval: @interval}
+    def initialize(api_key, site_token, client = Gosquared::Client.new)
+      @site_token = site_token
+      @api_key = api_key
+      @client = client
+    end
 
-  	def initialize(api_key, site_token, client = Gosquared::Client.new)
-  		@site_token = site_token
-  		@api_key = api_key
-  		@client = client
-  	end
+    DIMENSIONS.each do |dimension|
+      define_method dimension do
+        @dimension = dimension
+        self
+      end
+    end
 
+    @@filters.each do |key, _value|
+      define_method key do |argument|
+        @@filters[key] = argument
+        self
+      end
+    end
 
-  	DIMENSIONS.each do |dimension|
-  		define_method dimension do
-  			@dimension = dimension
-  			self
-  		end
-  	end
+    def fetch
+      data = @client.get(url)
+      @@filters.each { |key, _value| @@filters[key] = nil } if data
+      data
+    end
 
-  	@@filters.each do |key, value|
-  		define_method key do |argument|
-  			@@filters[key] = argument
-  			self
-  		end
-  	end
+    private
 
-  	def fetch
-  		data = @client.get(url)
-  		@@filters.each{|key, value| @@filters[key]=nil} if data
-  		data
-  	end
-
-  	private
-
-  	def url
-  		array = [""]
-  		@url = BASEURL + @dimension + "?api_key=#{@api_key}" + "&site_token=#{@site_token}"
-  		@@filters.each {|key, value| array << "#{key}=#{value}" if value }
-  		parameters=array.join('&')
-  		@url = @url.concat(parameters)
-  	end
-
+    def url
+      array = ['']
+      @url = BASEURL + @dimension + "?api_key=#{@api_key}" + "&site_token=#{@site_token}"
+      @@filters.each { |key, value| array << "#{key}=#{value}" if value }
+      parameters = array.join('&')
+      @url = @url.concat(parameters)
+    end
   end
 end
