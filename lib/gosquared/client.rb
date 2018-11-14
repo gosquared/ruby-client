@@ -43,7 +43,7 @@ module Gosquared
       response
   end
 
-    def delete(url, data)
+    def delete(url, data={})
       uri = URI.parse(url)
       begin
         https = Net::HTTP.new(uri.host, uri.port)

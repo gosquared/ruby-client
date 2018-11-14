@@ -26,14 +26,13 @@ module Gosquared
     @@filters.each do |key, _value|
       define_method key do |argument|
         @@filters[key] = argument
-        puts @@filters[key]
         self
       end
     end
 
-    def person_id(object, filter)
+    def person_id(object, filter=nil)
       @person_id = '/' + object
-      @person_filter = '/' + filter
+      @person_filter = '/' + filter if filter
       self
    end
 
@@ -50,6 +49,10 @@ module Gosquared
       data = Client.new.get(url)
       @@filters.each { |key, _value| @@filters[key] = nil } if data
       data
+    end
+
+    def delete
+      response = Client.new.delete(url)
     end
 
     def url
