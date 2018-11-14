@@ -61,7 +61,7 @@ module Gosquared
             response = false
           end
       end
-
+      
       response
     end
   end
