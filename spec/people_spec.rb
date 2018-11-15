@@ -107,9 +107,9 @@ describe Gosquared::People do
 
   it 'deletes a person from a project' do
     stub_request(:delete, "https://api.gosquared.com/people/v1/people/1?api_key=demo&site_token=GSN-106863-S").
-    with(:body => "[{}]",
-       :headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Content-Type'=>'application/json', 'User-Agent'=>'Ruby'}).
-    to_return(:status => 200, :body => "", :headers => {})
+      with(:body => "[{}]",
+         :headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Content-Type'=>'application/json', 'User-Agent'=>'Ruby'}).
+      to_return(:status => 200, :body => "", :headers => {})
     gs.people.people.person_id('1')
     response = gs.people.delete
     expect(response.code).to eq("200")

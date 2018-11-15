@@ -1,6 +1,6 @@
 describe Gosquared::Account do
   subject(:gs) { described_class.new('demo', 'GSN-2194840-F') }
-  VERSION = '3.0.7'.freeze
+  VERSION = '3.0.8'.freeze
 
   Gosquared::Account::DIMENSIONS.each do |dimension|
     before do
