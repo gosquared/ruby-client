@@ -1,7 +1,5 @@
 ## GoSquared Ruby Gem
 
-[![Build Status](https://travis-ci.org/gosquared/ruby-client.svg?branch=master)](https://travis-ci.org/gosquared/ruby-gem)
-
 **Please feel free to open an issue if you find anything not working, or to leave feedback for improvement. You can also get in touch directly: russell@gosquared.com**
 
 This gems works with the [GoSquared API](https://www.gosquared.com/docs/api/), You can use it for both fetching metrics from your GoSquared account and also posting new events and contacts.
