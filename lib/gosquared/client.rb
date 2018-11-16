@@ -61,10 +61,6 @@ module Gosquared
             response = false
           end
       end
-<<<<<<< HEAD
-      
-=======
->>>>>>> 64a7e3ccd62abf5fa1a2939cf0cd4776cf0b43ba
       response
     end
   end
