@@ -1,7 +1,7 @@
 describe Gosquared::Tracking do
   subject(:gs) { described_class.new('demo', 'GSN-2194840-F') }
 
-  VERSION = '3.0.8'.freeze
+  VERSION = '3.1.0'.freeze
 
   Gosquared::Tracking::DIMENSIONS.each do |dimension|
     before do

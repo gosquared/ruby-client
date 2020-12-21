@@ -5,7 +5,7 @@ require_relative 'gosquared/now'
 require_relative 'gosquared/account'
 
 module Gosquared
-  VERSION = '3.0.8'.freeze
+  VERSION = '3.1.0'.freeze
 
   class RubyLibrary
     def initialize(api_key, site_id)
